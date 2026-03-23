@@ -34,6 +34,12 @@ HAS_COLOR=0
 HAS_DUPLEX=0
 URF=""
 
+# Custom label size: 100x150mm (slightly offset to avoid iOS mapping to "Small Photo")
+# 100mm = 283.46pt, 150mm = 425.20pt — using 284x426 to dodge standard size detection
+CUSTOM_WIDTH_PT=284
+CUSTOM_HEIGHT_PT=426
+CUSTOM_LABEL="100x150"
+
 # Function to log messages
 log() {
     if [ $LOGGING -eq 1 ]; then
@@ -110,6 +116,120 @@ check_cups_permissions() {
       fi
     fi
   done <<< "$allp"
+}
+
+# Strip PPD to only contain the custom label size (100x150mm)
+# iOS reads paper sizes from the CUPS PPD, not from the dns-sd TXT record.
+strip_ppd_to_custom_size() {
+  local printer_name="$1"
+  local ppd="/etc/cups/ppd/${printer_name}.ppd"
+
+  if [ ! -f "$ppd" ]; then
+    log "PPD not found for $printer_name, skipping size restriction."
+    return 1
+  fi
+
+  # Back up original PPD if no backup exists yet
+  if [ ! -f "${ppd}.original" ]; then
+    sudo cp "$ppd" "${ppd}.original"
+    log "Backed up original PPD to ${ppd}.original"
+  fi
+
+  log "Stripping PPD for $printer_name to only ${CUSTOM_LABEL}..."
+
+  local w="$CUSTOM_WIDTH_PT"
+  local h="$CUSTOM_HEIGHT_PT"
+  local key="w${w}h${h}"
+  local label="$CUSTOM_LABEL"
+
+  # Use awk to replace all size entries in PageSize, PageRegion, ImageableArea, PaperDimension
+  sudo awk -v w="$w" -v h="$h" -v key="$key" -v label="$label" '
+    # Track which section we are in
+    /^\*OpenUI \*PageSize/ { in_pagesize=1; print; next }
+    /^\*CloseUI: \*PageSize/ {
+      if (in_pagesize && !printed_pagesize) {
+        printf "*PageSize %s/%s: \"<</PageSize[%s %s]/ImagingBBox null>>setpagedevice\"\n", key, label, w, h
+      }
+      in_pagesize=0; printed_pagesize=0; print; next
+    }
+    /^\*OpenUI \*PageRegion/ { in_pageregion=1; print; next }
+    /^\*CloseUI: \*PageRegion/ {
+      if (in_pageregion && !printed_pageregion) {
+        printf "*PageRegion %s/%s: \"<</PageSize[%s %s]/ImagingBBox null>>setpagedevice\"\n", key, label, w, h
+      }
+      in_pageregion=0; printed_pageregion=0; print; next
+    }
+
+    # PageSize entries: skip all, insert our custom one
+    in_pagesize && /^\*PageSize / {
+      if (!printed_pagesize) {
+        printf "*PageSize %s/%s: \"<</PageSize[%s %s]/ImagingBBox null>>setpagedevice\"\n", key, label, w, h
+        printed_pagesize=1
+      }
+      next
+    }
+
+    # PageRegion entries: skip all, insert our custom one
+    in_pageregion && /^\*PageRegion / {
+      if (!printed_pageregion) {
+        printf "*PageRegion %s/%s: \"<</PageSize[%s %s]/ImagingBBox null>>setpagedevice\"\n", key, label, w, h
+        printed_pageregion=1
+      }
+      next
+    }
+
+    # ImageableArea entries: replace all with custom
+    /^\*ImageableArea / && !/^\*DefaultImageableArea/ {
+      if (!printed_imageable) {
+        printf "*ImageableArea %s/%s: \"0 0 %s %s\"\n", key, label, w, h
+        printed_imageable=1
+      }
+      next
+    }
+
+    # PaperDimension entries: replace all with custom
+    /^\*PaperDimension / && !/^\*DefaultPaperDimension/ {
+      if (!printed_paperdim) {
+        printf "*PaperDimension %s/%s: \"%s %s\"\n", key, label, w, h
+        printed_paperdim=1
+      }
+      next
+    }
+
+    # Update defaults to our custom size
+    /^\*DefaultPageSize:/ { printf "*DefaultPageSize: %s\n", key; next }
+    /^\*DefaultPageRegion:/ { printf "*DefaultPageRegion: %s\n", key; next }
+    /^\*DefaultImageableArea:/ { printf "*DefaultImageableArea: %s\n", key; next }
+    /^\*DefaultPaperDimension:/ { printf "*DefaultPaperDimension: %s\n", key; next }
+
+    # Disable CustomPageSize (prevents iOS from generating arbitrary sizes)
+    /^\*CustomPageSize True:/ { print "*CustomPageSize False: \"pop pop pop <</PageSize[5 -2 roll]/ImagingBBox null>>setpagedevice\""; next }
+    # Remove ParamCustomPageSize lines
+    /^\*ParamCustomPageSize / { next }
+
+    # Print all other lines unchanged
+    { print }
+  ' "${ppd}" | sudo tee "${ppd}.tmp" > /dev/null
+
+  sudo mv "${ppd}.tmp" "$ppd"
+  log "PPD updated: only ${CUSTOM_LABEL} available for $printer_name"
+
+  # Restart CUPS to pick up PPD changes
+  sudo launchctl stop org.cups.cupsd
+  sudo launchctl start org.cups.cupsd
+  log "CUPS restarted to apply PPD changes."
+}
+
+# Restore original PPD from backup
+restore_ppd() {
+  local printer_name="$1"
+  local ppd="/etc/cups/ppd/${printer_name}.ppd"
+  if [ -f "${ppd}.original" ]; then
+    sudo cp "${ppd}.original" "$ppd"
+    sudo launchctl stop org.cups.cupsd
+    sudo launchctl start org.cups.cupsd
+    log "Restored original PPD for $printer_name"
+  fi
 }
 
 # Revert CUPS config if it was changed and a backup exists
@@ -314,24 +434,9 @@ generate_urf() {
                 done
                 ;;
             
-            # Media Size Options
+            # Media Size Options - hardcoded to 100x150mm custom label format
             *"PageSize/Media Size:"*)
-                IFS=' ' read -r -a media_sizes <<< "$(echo "$line" | awk -F':' '{print $2}' | sed 's/^ *//')"
-                for media_size in "${media_sizes[@]}"; do
-                    case "$media_size" in
-                        *Letter*) add_urf_code "MS_LETTER" ;;
-                        *Legal*) add_urf_code "MS_LEGAL" ;;
-                        *A4*) add_urf_code "MS_A4" ;;
-                        *A3*) add_urf_code "MS_A3" ;;
-                        *A5*) add_urf_code "MS_A5" ;;
-                        *A6*) add_urf_code "MS_A6" ;;
-                        *B5*) add_urf_code "MS_B5" ;;
-                        *Executive*) add_urf_code "MS_EXECUTIVE" ;;
-                        *Tabloid*) add_urf_code "MS_TABLOID" ;;
-                        *4x6*|*4X6*) add_urf_code "MS_4X6" ;;
-                        *5x7*|*5X7*) add_urf_code "MS_5X7" ;;
-                    esac
-                done
+                add_urf_code "MS_CUSTOM_100x150mm"
                 ;;
             
             # Media Type Options
@@ -543,7 +648,13 @@ EOF
 uninstall() {
     log "Uninstalling..."
     plist_file="/Library/LaunchDaemons/com.sapireli.airprint_bridge.plist"
-    
+
+    # Restore original PPDs
+    all_printers=$(lpstat -p 2>/dev/null | awk '{print $2}')
+    while IFS= read -r p; do
+        [ -n "$p" ] && restore_ppd "$p"
+    done <<< "$all_printers"
+
     revert_cups_config
 
     # Unload and remove the plist file
@@ -589,6 +700,9 @@ install() {
     check_cups_permissions
     check_firewall
     if browse_printers; then
+        for printer_name in "${PRINTERS[@]}"; do
+            strip_ppd_to_custom_size "$printer_name"
+        done
         generate_script
         generate_plist
         log "Installation complete."
@@ -603,8 +717,11 @@ test_run() {
     check_dependencies
     check_cups_permissions
     check_firewall
-    
+
     if browse_printers; then
+        for printer_name in "${PRINTERS[@]}"; do
+            strip_ppd_to_custom_size "$printer_name"
+        done
         generate_script
         log "Registering printer(s), use CTRL-C to exit"
         ./$SCRIPT

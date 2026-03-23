@@ -34,11 +34,11 @@ HAS_COLOR=0
 HAS_DUPLEX=0
 URF=""
 
-# Custom label size: 100x150mm (slightly offset to avoid iOS mapping to "Small Photo")
-# 100mm = 283.46pt, 150mm = 425.20pt — using 284x426 to dodge standard size detection
+# Custom label size: 100x40mm
+# 100mm = 283.46pt, 40mm = 113.39pt — using 284x114 to dodge standard size detection
 CUSTOM_WIDTH_PT=284
-CUSTOM_HEIGHT_PT=426
-CUSTOM_LABEL="100x150"
+CUSTOM_HEIGHT_PT=114
+CUSTOM_LABEL="100x40"
 
 # Function to log messages
 log() {

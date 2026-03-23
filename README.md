@@ -1,12 +1,12 @@
 # AirPrint Bridge - Custom Label Size Fork
 
-Fork of [sapireli/AirPrint_Bridge](https://github.com/sapireli/AirPrint_Bridge) with support for **custom label sizes (100x150mm)** for thermal label printers like Zebra.
+Fork of [sapireli/AirPrint_Bridge](https://github.com/sapireli/AirPrint_Bridge) with support for **custom label sizes (100x40mm)** for thermal label printers like Zebra.
 
 ## What's Different
 
 This fork adds:
 
-- **Fixed 100x150mm label size** — forces all AirPrint-shared printers to advertise only a 100x150mm paper size (common shipping label format)
+- **Fixed 100x40mm label size** — forces all AirPrint-shared printers to advertise only a 100x40mm paper size (common shipping label format)
 - **PPD stripping** — modifies the printer's PPD file so iOS only sees the custom label size, preventing users from accidentally selecting the wrong paper size
 - **Automatic PPD backup & restore** — original PPD files are backed up before modification and restored on uninstall
 
@@ -44,7 +44,7 @@ sudo ./airprint_bridge.sh -t
 
 This will:
 1. Detect shared printers
-2. Strip the PPD to only offer the 100x150mm label size
+2. Strip the PPD to only offer the 100x40mm label size
 3. Register the printer(s) via Bonjour/dns-sd
 4. Keep running in the foreground — test printing from your iOS device
 
@@ -73,11 +73,11 @@ This removes the service, restores original PPD files, and reverts any CUPS conf
 The label size is configured at the top of `airprint_bridge.sh`:
 
 ```bash
-# Custom label size: 100x150mm
-# 100mm = 283.46pt, 150mm = 425.20pt
+# Custom label size: 100x40mm
+# 100mm = 283.46pt, 40mm = 113.39pt
 CUSTOM_WIDTH_PT=284
-CUSTOM_HEIGHT_PT=426
-CUSTOM_LABEL="100x150"
+CUSTOM_HEIGHT_PT=114
+CUSTOM_LABEL="100x40"
 ```
 
 To use a different size, update these values. Dimensions are in PostScript points (1 inch = 72 points, 1 mm = 2.8346 points).
@@ -95,7 +95,7 @@ To use a different size, update these values. Dimensions are in PostScript point
 ## How It Works
 
 1. Detects shared printers on your Mac
-2. Strips the printer's PPD file to only contain the 100x150mm size
+2. Strips the printer's PPD file to only contain the 100x40mm size
 3. Generates URF capability records for each printer
 4. Registers printers via `dns-sd` as AirPrint-compatible
 5. Installs a `launchd` daemon so the service survives reboots

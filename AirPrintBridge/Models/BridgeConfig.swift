@@ -24,9 +24,14 @@ final class BridgeConfig: ObservableObject {
         self.defaultPaperWidth = defaults.object(forKey: "defaultPaperWidth") as? Int ?? 100
         self.defaultPaperHeight = defaults.object(forKey: "defaultPaperHeight") as? Int ?? 40
         self.showMenuBarIcon = defaults.object(forKey: "showMenuBarIcon") as? Bool ?? true
-        self.printers = []
 
-        loadPrinters()
+        // Load printers directly during init to avoid @Published trigger
+        if let data = defaults.data(forKey: "enabledPrinters"),
+           let array = try? JSONDecoder().decode([PrinterConfig].self, from: data) {
+            self.printers = array
+        } else {
+            self.printers = []
+        }
     }
 
     func loadPrinters() {

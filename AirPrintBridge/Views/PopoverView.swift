@@ -114,6 +114,7 @@ struct PopoverView: View {
 
     // MARK: - Actions
 
+    @MainActor
     private func refreshAsync() async {
         let printers = await Task.detached {
             PrinterDiscovery.discover()
@@ -124,6 +125,8 @@ struct PopoverView: View {
     }
 
     private func refresh() {
-        Task { await refreshAsync() }
+        Task { @MainActor in
+            await refreshAsync()
+        }
     }
 }

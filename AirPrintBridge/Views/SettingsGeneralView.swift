@@ -4,6 +4,7 @@ struct SettingsGeneralView: View {
     @EnvironmentObject private var config: BridgeConfig
     @StateObject private var daemonManager = DaemonManager()
     @State private var errorMessage: String?
+    @State private var showUninstallConfirm = false
 
     var body: some View {
         Form {
@@ -41,6 +42,30 @@ struct SettingsGeneralView: View {
                 }
             }
 
+            Section("Daemon beheer") {
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("Status")
+                        Text(daemonManager.statusDescription)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                    Spacer()
+                    Button("Herlaad") {
+                        config.notifyDaemon()
+                    }
+                }
+
+                Button("Daemon stoppen") {
+                    stopDaemon()
+                }
+
+                Button("Daemon verwijderen") {
+                    showUninstallConfirm = true
+                }
+                .foregroundColor(.red)
+            }
+
             if let errorMessage {
                 Section {
                     Text(errorMessage)
@@ -51,6 +76,14 @@ struct SettingsGeneralView: View {
         }
         .formStyle(.grouped)
         .frame(width: 450)
+        .alert("Daemon verwijderen?", isPresented: $showUninstallConfirm) {
+            Button("Annuleer", role: .cancel) { }
+            Button("Verwijderen", role: .destructive) {
+                uninstallDaemon()
+            }
+        } message: {
+            Text("Dit stopt de achtergrondservice en herstelt alle printerinstellingen naar origineel. AirPrint wordt uitgeschakeld.")
+        }
     }
 
     private func toggleDaemon(enable: Bool) {
@@ -62,7 +95,37 @@ struct SettingsGeneralView: View {
             }
             errorMessage = nil
         } catch {
-            errorMessage = "Kon de achtergrondservice niet \(enable ? "starten" : "stoppen"): \(error.localizedDescription). Voor deze functie is een Developer ID-signed build nodig."
+            errorMessage = "Kon de achtergrondservice niet \(enable ? "starten" : "stoppen"): \(error.localizedDescription)"
         }
+    }
+
+    private func stopDaemon() {
+        // Send stop notification to daemon
+        DistributedNotificationCenter.default().postNotificationName(
+            NSNotification.Name(AirPrintBridge.reloadNotification + ".stop"),
+            object: nil
+        )
+        errorMessage = nil
+    }
+
+    private func uninstallDaemon() {
+        // Send cleanup notification
+        DistributedNotificationCenter.default().postNotificationName(
+            NSNotification.Name(AirPrintBridge.reloadNotification + ".stop"),
+            object: nil
+        )
+
+        // Unregister from SMAppService
+        do {
+            try daemonManager.unregister()
+        } catch {
+            // Ignore — daemon may already be unregistered
+        }
+
+        // Clear all config
+        config.printers = []
+        config.savePrinters()
+
+        errorMessage = nil
     }
 }

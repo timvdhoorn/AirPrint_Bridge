@@ -211,7 +211,7 @@ signal(SIGINT) { _ in
     exit(0)
 }
 
-// MARK: - Distributed Notification (app → daemon reload)
+// MARK: - Distributed Notifications (app → daemon)
 
 DistributedNotificationCenter.default().addObserver(
     forName: NSNotification.Name(AirPrintBridge.reloadNotification),
@@ -220,6 +220,16 @@ DistributedNotificationCenter.default().addObserver(
 ) { _ in
     print("[Daemon] Received reload notification from app...")
     setup()
+}
+
+DistributedNotificationCenter.default().addObserver(
+    forName: NSNotification.Name(AirPrintBridge.reloadNotification + ".stop"),
+    object: nil,
+    queue: .main
+) { _ in
+    print("[Daemon] Received stop notification from app...")
+    cleanup()
+    exit(0)
 }
 
 // MARK: - Main

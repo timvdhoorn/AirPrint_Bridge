@@ -300,13 +300,16 @@
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					8C71E67C4AF61A68F28178BB = {
-						DevelopmentTeam = "";
+						DevelopmentTeam = Y9PUU2MN3R;
+						ProvisioningStyle = Manual;
 					};
 					F10D1CA56A40958870DC5875 = {
-						DevelopmentTeam = "";
+						DevelopmentTeam = Y9PUU2MN3R;
+						ProvisioningStyle = Manual;
 					};
 					FFF038DBECD251EF49338DDD = {
-						DevelopmentTeam = "";
+						DevelopmentTeam = Y9PUU2MN3R;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -491,10 +494,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Developer ID Application: Labels en Meer B.V. (Y9PUU2MN3R)";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Y9PUU2MN3R;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -614,10 +618,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Developer ID Application: Labels en Meer B.V. (Y9PUU2MN3R)";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Y9PUU2MN3R;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

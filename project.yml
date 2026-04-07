@@ -11,9 +11,10 @@ settings:
   base:
     SWIFT_VERSION: "5.9"
     MACOSX_DEPLOYMENT_TARGET: "13.0"
-    CODE_SIGN_IDENTITY: "-"
-    DEVELOPMENT_TEAM: ""
     ENABLE_HARDENED_RUNTIME: YES
+    CODE_SIGN_STYLE: Manual
+    DEVELOPMENT_TEAM: Y9PUU2MN3R
+    CODE_SIGN_IDENTITY: "Developer ID Application: Labels en Meer B.V. (Y9PUU2MN3R)"
 
 targets:
   AirPrintBridge:

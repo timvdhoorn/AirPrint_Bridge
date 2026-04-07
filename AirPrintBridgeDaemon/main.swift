@@ -89,12 +89,36 @@ func resolveAndRegister(printer: PrinterConfig) -> DaemonStatus.PrinterStatus {
         urf: urf
     )
 
+    // Get device URI and extract port
+    let uriResult = ShellCommand.run("lpstat -v \(name)")
+    let deviceUri = uriResult.stdout.components(separatedBy: " ")
+        .dropFirst(2).first?
+        .trimmingCharacters(in: CharacterSet(charactersIn: ":")) ?? ""
+
+    let port: Int
+    if deviceUri.hasPrefix("ipp://") || deviceUri.hasPrefix("ipps://") {
+        // Extract port from URI: ipp://host:port/path
+        let urlParts = deviceUri.components(separatedBy: "/")
+        if urlParts.count >= 3 {
+            let hostPort = urlParts[2]
+            if let colonRange = hostPort.range(of: ":", options: .backwards) {
+                port = Int(hostPort[colonRange.upperBound...]) ?? 631
+            } else {
+                port = 631
+            }
+        } else {
+            port = 631
+        }
+    } else {
+        port = 631
+    }
+
     // Register dns-sd
-    let displayName = "\(description) @ \(hostname)"
+    let displayName = description
     let registered = registrar.register(
         printerName: name,
         description: displayName,
-        port: 631,
+        port: port,
         txtRecords: txtRecords
     )
 
@@ -142,14 +166,28 @@ func cleanup() {
     print("[Daemon] Cleaning up...")
     registrar.unregisterAll()
 
-    let printers = configReader.readPrinters()
-    for printer in printers {
-        CUPSManager.restorePPD(printerName: printer.name)
+    // Restore ALL printer PPDs, not just configured ones
+    let allPrinters = ShellCommand.run("lpstat -p 2>/dev/null | awk '{print $2}'")
+    for name in allPrinters.stdout.components(separatedBy: "\n").filter({ !$0.isEmpty }) {
+        CUPSManager.restorePPD(printerName: name)
+    }
+
+    // Revert CUPS config
+    CUPSManager.revertConfig()
+
+    // Kill orphaned dns-sd processes
+    let pids = ShellCommand.run("pgrep -f 'dns-sd -R'")
+    for pidStr in pids.stdout.components(separatedBy: "\n").filter({ !$0.isEmpty }) {
+        if let pid = Int32(pidStr) {
+            let args = ShellCommand.run("ps -p \(pid) -o args=")
+            if args.stdout.contains(AirPrintBridge.service) {
+                kill(pid, SIGTERM)
+            }
+        }
     }
 
     let status = DaemonStatus(running: false, printers: [], lastUpdated: Date())
     StatusWriter.write(status)
-
     removePIDFile()
     print("[Daemon] Cleanup complete")
 }

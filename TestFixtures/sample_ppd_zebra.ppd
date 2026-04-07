@@ -1,0 +1,37 @@
+*PPD-Adobe: "4.3"
+*FormatVersion: "4.3"
+*FileVersion: "1.0"
+*LanguageVersion: English
+*Manufacturer: "Zebra"
+*ModelName: "Zebra ZPL Label Printer"
+*NickName: "Zebra ZPL Label Printer"
+
+*OpenUI *PageSize/Media Size: PickOne
+*DefaultPageSize: w288h432
+*PageSize w288h432/4x6: "<</PageSize[288 432]/ImagingBBox null>>setpagedevice"
+*PageSize w162h288/2.25x4: "<</PageSize[162 288]/ImagingBBox null>>setpagedevice"
+*PageSize w288h576/4x8: "<</PageSize[288 576]/ImagingBBox null>>setpagedevice"
+*CloseUI: *PageSize
+
+*OpenUI *PageRegion: PickOne
+*DefaultPageRegion: w288h432
+*PageRegion w288h432/4x6: "<</PageSize[288 432]/ImagingBBox null>>setpagedevice"
+*PageRegion w162h288/2.25x4: "<</PageSize[162 288]/ImagingBBox null>>setpagedevice"
+*CloseUI: *PageRegion
+
+*DefaultImageableArea: w288h432
+*ImageableArea w288h432/4x6: "0 0 288 432"
+*ImageableArea w162h288/2.25x4: "0 0 162 288"
+
+*DefaultPaperDimension: w288h432
+*PaperDimension w288h432/4x6: "288 432"
+*PaperDimension w162h288/2.25x4: "162 288"
+
+*CustomPageSize True: "pop pop pop <</PageSize[5 -2 roll]/ImagingBBox null>>setpagedevice"
+*ParamCustomPageSize Width: 1 points 36 1296
+*ParamCustomPageSize Height: 2 points 36 1296
+
+*OpenUI *ColorModel/Color Mode: PickOne
+*DefaultColorModel: Gray
+*ColorModel Gray/Grayscale: "<</cupsColorSpace 0>>setpagedevice"
+*CloseUI: *ColorModel

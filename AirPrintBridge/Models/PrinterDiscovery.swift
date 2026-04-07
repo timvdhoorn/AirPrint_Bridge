@@ -48,7 +48,7 @@ enum PrinterDiscovery {
         return results
     }
 
-    /// Live discovery using `lpstat -l -p`.
+    /// Live discovery using `lpstat -l -p` with a 5-second timeout.
     static func discover() -> [DiscoveredPrinter] {
         let process = Process()
         process.executableURL = URL(fileURLWithPath: "/usr/bin/lpstat")
@@ -64,10 +64,23 @@ enum PrinterDiscovery {
             return []
         }
 
-        let data = pipe.fileHandleForReading.readDataToEndOfFile()
-        process.waitUntilExit()
+        // Read with timeout to prevent hanging
+        let semaphore = DispatchSemaphore(value: 0)
+        var outputData = Data()
 
-        let output = String(data: data, encoding: .utf8) ?? ""
+        DispatchQueue.global().async {
+            outputData = pipe.fileHandleForReading.readDataToEndOfFile()
+            semaphore.signal()
+        }
+
+        let timeout = semaphore.wait(timeout: .now() + 5)
+        if timeout == .timedOut {
+            process.terminate()
+            return []
+        }
+
+        process.waitUntilExit()
+        let output = String(data: outputData, encoding: .utf8) ?? ""
         return parse(lpstatOutput: output)
     }
 }

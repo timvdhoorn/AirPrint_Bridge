@@ -5,11 +5,7 @@ struct AirPrintBridgeApp: App {
     @StateObject private var config = BridgeConfig()
 
     var body: some Scene {
-        MenuBarExtra(
-            "AirPrint Bridge",
-            systemImage: "printer.fill",
-            isInserted: $config.showMenuBarIcon
-        ) {
+        MenuBarExtra("AirPrint Bridge", systemImage: "printer.fill") {
             PopoverView()
                 .environmentObject(config)
         }

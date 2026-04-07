@@ -62,7 +62,7 @@ struct SettingsGeneralView: View {
             }
             errorMessage = nil
         } catch {
-            errorMessage = "Kon de achtergrondservice niet \(enable ? "starten" : "stoppen"): \(error.localizedDescription)"
+            errorMessage = "Kon de achtergrondservice niet \(enable ? "starten" : "stoppen"): \(error.localizedDescription). Voor deze functie is een Developer ID-signed build nodig."
         }
     }
 }

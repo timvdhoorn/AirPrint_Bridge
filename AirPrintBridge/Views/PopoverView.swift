@@ -4,6 +4,7 @@ struct PopoverView: View {
     @EnvironmentObject private var config: BridgeConfig
     @State private var daemonStatus: DaemonStatus?
     @State private var discoveredPrinters: [DiscoveredPrinter] = []
+    @State private var hasLoaded = false
 
     private var isRunning: Bool { daemonStatus?.running ?? false }
     private var enabledCount: Int { config.printers.filter(\.enabled).count }
@@ -11,48 +12,29 @@ struct PopoverView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            header
-            Divider()
-            printerList
-            Divider()
-            footer
-        }
-        .padding()
-        .frame(width: 320)
-        .task { await refreshAsync() }
-    }
-
-    // MARK: - Header
-
-    private var header: some View {
-        VStack(alignment: .leading, spacing: 4) {
+            // Header
             HStack {
-                Text("AirPrint Bridge")
-                    .font(.headline)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("AirPrint Bridge")
+                        .font(.headline)
+                    Text("\(enabledCount) van \(totalCount) printers gedeeld")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
                 Spacer()
-                statusBadge
+                HStack(spacing: 4) {
+                    Circle()
+                        .fill(isRunning ? Color.green : Color.red)
+                        .frame(width: 8, height: 8)
+                    Text(isRunning ? "Actief" : "Gestopt")
+                        .font(.caption)
+                        .foregroundColor(isRunning ? .green : .red)
+                }
             }
-            Text("\(enabledCount) van \(totalCount) printers gedeeld")
-                .font(.caption)
-                .foregroundColor(.secondary)
-        }
-    }
 
-    private var statusBadge: some View {
-        HStack(spacing: 4) {
-            Circle()
-                .fill(isRunning ? Color.green : Color.red)
-                .frame(width: 8, height: 8)
-            Text(isRunning ? "Actief" : "Gestopt")
-                .font(.caption)
-                .foregroundColor(isRunning ? .green : .red)
-        }
-    }
+            Divider()
 
-    // MARK: - Printer List
-
-    private var printerList: some View {
-        Group {
+            // Printer list
             if config.printers.isEmpty {
                 Text("Geen gedeelde printers gevonden")
                     .font(.body)
@@ -62,71 +44,67 @@ struct PopoverView: View {
             } else {
                 VStack(spacing: 8) {
                     ForEach(Array(config.printers.enumerated()), id: \.element.id) { index, printer in
-                        printerRow(printer: printer, index: index)
+                        HStack {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(printer.name)
+                                    .fontWeight(.bold)
+                                Text("\(printer.sizeLabel) mm")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                            Spacer()
+                            Toggle("", isOn: Binding(
+                                get: { printer.enabled },
+                                set: { newValue in
+                                    var updated = printer
+                                    updated.enabled = newValue
+                                    config.printers[index] = updated
+                                    config.notifyDaemon()
+                                }
+                            ))
+                            .toggleStyle(.switch)
+                            .labelsHidden()
+                        }
+                        .opacity(printer.enabled ? 1.0 : 0.6)
                     }
                 }
             }
-        }
-    }
 
-    private func printerRow(printer: PrinterConfig, index: Int) -> some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 2) {
-                Text(printer.name)
-                    .font(.body)
-                    .fontWeight(.bold)
-                Text("\(printer.sizeLabel) mm")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-            }
-            Spacer()
-            Toggle("", isOn: Binding(
-                get: { printer.enabled },
-                set: { newValue in
-                    var updated = printer
-                    updated.enabled = newValue
-                    config.printers[index] = updated
-                    config.notifyDaemon()
+            Divider()
+
+            // Footer
+            HStack {
+                if #available(macOS 14, *) {
+                    SettingsLink {
+                        Text("Instellingen")
+                    }
+                } else {
+                    Button("Instellingen") {
+                        NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
+                    }
                 }
-            ))
-            .toggleStyle(.switch)
-            .labelsHidden()
-        }
-        .opacity(printer.enabled ? 1.0 : 0.6)
-    }
-
-    // MARK: - Footer
-
-    private var footer: some View {
-        HStack {
-            Button("Instellingen") {
-                NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+                Button("Vernieuw") { refresh() }
+                Spacer()
             }
-            Button("Vernieuw") {
+        }
+        .padding()
+        .frame(width: 320)
+        .onAppear {
+            if !hasLoaded {
+                hasLoaded = true
                 refresh()
             }
-            Spacer()
-            Button(isRunning ? "Stop" : "Start") {
-                // TODO: start/stop daemon
-            }
         }
-    }
-
-    // MARK: - Actions
-
-    @MainActor
-    private func refreshAsync() async {
-        let printers = await Task.detached {
-            PrinterDiscovery.discover()
-        }.value
-        discoveredPrinters = printers
-        config.syncWithDiscovered(printers)
-        daemonStatus = StatusReader.read()
     }
 
     private func refresh() {
-        Task { @MainActor in
-            await refreshAsync()
+        daemonStatus = StatusReader.read()
+        Task.detached {
+            let printers = PrinterDiscovery.discover()
+            await MainActor.run {
+                discoveredPrinters = printers
+                config.syncWithDiscovered(printers)
+            }
         }
     }
 }

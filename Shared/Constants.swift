@@ -1,7 +1,7 @@
 import Foundation
 
 enum AirPrintBridge {
-    static let suiteName = "nl.labelsenmeer.airprint-bridge"
+    static let suiteName = "nl.labelsenmeer.airprint-bridge.shared"
     static let daemonLabel = "nl.labelsenmeer.airprint-bridge.daemon"
     static let pidFilePath = "/var/run/airprint-bridge.pid"
     static let statusFilePath = "/tmp/airprint-bridge-status.json"

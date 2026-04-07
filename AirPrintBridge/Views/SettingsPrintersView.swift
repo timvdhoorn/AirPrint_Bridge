@@ -35,7 +35,7 @@ struct SettingsPrintersView: View {
         }
         .formStyle(.grouped)
         .frame(width: 450)
-        .onAppear { refresh() }
+        .task { await refreshAsync() }
     }
 
     private func printerRow(printer: PrinterConfig, index: Int) -> some View {
@@ -90,8 +90,18 @@ struct SettingsPrintersView: View {
         .padding(.vertical, 4)
     }
 
+    @MainActor
+    private func refreshAsync() async {
+        let printers = await Task.detached {
+            PrinterDiscovery.discover()
+        }.value
+        discoveredPrinters = printers
+        config.syncWithDiscovered(printers)
+    }
+
     private func refresh() {
-        discoveredPrinters = PrinterDiscovery.discover()
-        config.syncWithDiscovered(discoveredPrinters)
+        Task { @MainActor in
+            await refreshAsync()
+        }
     }
 }

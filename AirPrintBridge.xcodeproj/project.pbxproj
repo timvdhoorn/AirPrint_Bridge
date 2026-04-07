@@ -1,0 +1,594 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0146D0324D8524C2AEA1B013 /* AirPrintBridgeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E722248B4C7E9F9242E757 /* AirPrintBridgeApp.swift */; };
+		1D1C1D1EA512570FA696C240 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBC2E60987797C9A14A749B /* main.swift */; };
+		2A15DF9F52947D1EFCC4234C /* AirPrintBridgeDaemon in Resources */ = {isa = PBXBuildFile; fileRef = A6E038579D067B93A6239000 /* AirPrintBridgeDaemon */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3E149F0B71329DE959DD13D5 /* sample_lpoptions_color.txt in Resources */ = {isa = PBXBuildFile; fileRef = A502BE7AEEA43BCC24A1DE1F /* sample_lpoptions_color.txt */; };
+		4B809877A9BB0A4613E52425 /* UnitConversionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8A9C3A81C829501AB57B8D /* UnitConversionTests.swift */; };
+		76D38F7DF60B1B89D0143DCF /* sample_lpoptions_zebra.txt in Resources */ = {isa = PBXBuildFile; fileRef = 144327CF29AF2B6B140BB810 /* sample_lpoptions_zebra.txt */; };
+		81DBAE25537DF5C6A53C8B82 /* URFGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C289E8DE65E90ACEA56EBCC0 /* URFGenerator.swift */; };
+		8FE0FDD09F2670CD80C82950 /* UnitConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6072551B0B0D8912B1626439 /* UnitConversion.swift */; };
+		998945763F6B5918432CEDEC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5FA94CAEBC8A141B25C052 /* Constants.swift */; };
+		9FAE36B5F31CE29EFF01AA89 /* URFGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135718DF6DF5F6A2D56170D /* URFGeneratorTests.swift */; };
+		A7EC9CB9CF6A08C07F630BAE /* PrinterConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC1226B18B3E021569649C8 /* PrinterConfig.swift */; };
+		A8ECCDA27B172CD166BD56BF /* UnitConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6072551B0B0D8912B1626439 /* UnitConversion.swift */; };
+		AA941DE70568512B47AF4A08 /* URFGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C289E8DE65E90ACEA56EBCC0 /* URFGenerator.swift */; };
+		AB78C5FF1361DBAF93AF6484 /* PrinterConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC1226B18B3E021569649C8 /* PrinterConfig.swift */; };
+		D13D0ABE5ACE4B5654842387 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5FA94CAEBC8A141B25C052 /* Constants.swift */; };
+		EB71960ED386E2347AA5EFB9 /* nl.labelsenmeer.airprint-bridge.daemon.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4AEC8A23BE7093B2D510EB13 /* nl.labelsenmeer.airprint-bridge.daemon.plist */; };
+		F98D4AFC88F7005C2615E541 /* AirPrintBridgeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10130BD9170B4AF20852A45B /* AirPrintBridgeTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2DFCE991D7CCF40D03A2AF7A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0CF7475EACC2F15E3A41CF92 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FFF038DBECD251EF49338DDD;
+			remoteInfo = AirPrintBridgeDaemon;
+		};
+		33033C338BD89974FA2CFE13 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0CF7475EACC2F15E3A41CF92 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C71E67C4AF61A68F28178BB;
+			remoteInfo = AirPrintBridge;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		046AAF13AF5206A479C86904 /* AirPrintBridge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirPrintBridge.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		10130BD9170B4AF20852A45B /* AirPrintBridgeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirPrintBridgeTests.swift; sourceTree = "<group>"; };
+		144327CF29AF2B6B140BB810 /* sample_lpoptions_zebra.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = sample_lpoptions_zebra.txt; sourceTree = "<group>"; };
+		1B8F922F314DC7996DE7DB48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		1DBC2E60987797C9A14A749B /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		26E722248B4C7E9F9242E757 /* AirPrintBridgeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirPrintBridgeApp.swift; sourceTree = "<group>"; };
+		2BE0903461FF51C734F4E508 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2F5FA94CAEBC8A141B25C052 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4AEC8A23BE7093B2D510EB13 /* nl.labelsenmeer.airprint-bridge.daemon.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "nl.labelsenmeer.airprint-bridge.daemon.plist"; sourceTree = "<group>"; };
+		6072551B0B0D8912B1626439 /* UnitConversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitConversion.swift; sourceTree = "<group>"; };
+		6F8A9C3A81C829501AB57B8D /* UnitConversionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitConversionTests.swift; sourceTree = "<group>"; };
+		85BFC155F4C80301B9689FFD /* AirPrintBridgeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirPrintBridgeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A135718DF6DF5F6A2D56170D /* URFGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URFGeneratorTests.swift; sourceTree = "<group>"; };
+		A502BE7AEEA43BCC24A1DE1F /* sample_lpoptions_color.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = sample_lpoptions_color.txt; sourceTree = "<group>"; };
+		A6E038579D067B93A6239000 /* AirPrintBridgeDaemon */ = {isa = PBXFileReference; includeInIndex = 0; path = AirPrintBridgeDaemon; sourceTree = BUILT_PRODUCTS_DIR; };
+		C289E8DE65E90ACEA56EBCC0 /* URFGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URFGenerator.swift; sourceTree = "<group>"; };
+		DBC1226B18B3E021569649C8 /* PrinterConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterConfig.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		081E397E9675A75C5FF33C5C /* AirPrintBridgeTests */ = {
+			isa = PBXGroup;
+			children = (
+				10130BD9170B4AF20852A45B /* AirPrintBridgeTests.swift */,
+				6F8A9C3A81C829501AB57B8D /* UnitConversionTests.swift */,
+				A135718DF6DF5F6A2D56170D /* URFGeneratorTests.swift */,
+			);
+			path = AirPrintBridgeTests;
+			sourceTree = "<group>";
+		};
+		37EB48C0B4DE9AAF38355F9A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				046AAF13AF5206A479C86904 /* AirPrintBridge.app */,
+				A6E038579D067B93A6239000 /* AirPrintBridgeDaemon */,
+				85BFC155F4C80301B9689FFD /* AirPrintBridgeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		507BDBC93C390620233D2558 /* AirPrintBridge */ = {
+			isa = PBXGroup;
+			children = (
+				26E722248B4C7E9F9242E757 /* AirPrintBridgeApp.swift */,
+				1B8F922F314DC7996DE7DB48 /* Info.plist */,
+			);
+			path = AirPrintBridge;
+			sourceTree = "<group>";
+		};
+		8CF30CA963FB56318C2C3BD3 /* AirPrintBridgeDaemon */ = {
+			isa = PBXGroup;
+			children = (
+				2BE0903461FF51C734F4E508 /* Info.plist */,
+				1DBC2E60987797C9A14A749B /* main.swift */,
+				4AEC8A23BE7093B2D510EB13 /* nl.labelsenmeer.airprint-bridge.daemon.plist */,
+			);
+			path = AirPrintBridgeDaemon;
+			sourceTree = "<group>";
+		};
+		954B280A28739DE10DEC6395 = {
+			isa = PBXGroup;
+			children = (
+				507BDBC93C390620233D2558 /* AirPrintBridge */,
+				8CF30CA963FB56318C2C3BD3 /* AirPrintBridgeDaemon */,
+				081E397E9675A75C5FF33C5C /* AirPrintBridgeTests */,
+				DBF0A2C56568466A59399363 /* Shared */,
+				F473265466EAB2FBED595EEE /* TestFixtures */,
+				37EB48C0B4DE9AAF38355F9A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DBF0A2C56568466A59399363 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				2F5FA94CAEBC8A141B25C052 /* Constants.swift */,
+				DBC1226B18B3E021569649C8 /* PrinterConfig.swift */,
+				6072551B0B0D8912B1626439 /* UnitConversion.swift */,
+				C289E8DE65E90ACEA56EBCC0 /* URFGenerator.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		F473265466EAB2FBED595EEE /* TestFixtures */ = {
+			isa = PBXGroup;
+			children = (
+				A502BE7AEEA43BCC24A1DE1F /* sample_lpoptions_color.txt */,
+				144327CF29AF2B6B140BB810 /* sample_lpoptions_zebra.txt */,
+			);
+			path = TestFixtures;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8C71E67C4AF61A68F28178BB /* AirPrintBridge */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D54B7DD34C511F6C83ACB40 /* Build configuration list for PBXNativeTarget "AirPrintBridge" */;
+			buildPhases = (
+				A201534CBDDD9195365CB0BB /* Sources */,
+				49FA3BD104FF8C2CEA16823B /* Resources */,
+				6AD2AD62E986655E4C4282C0 /* Embed Daemon in LaunchDaemons */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B1E2185098BCB1D9A699F6CB /* PBXTargetDependency */,
+			);
+			name = AirPrintBridge;
+			packageProductDependencies = (
+			);
+			productName = AirPrintBridge;
+			productReference = 046AAF13AF5206A479C86904 /* AirPrintBridge.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F10D1CA56A40958870DC5875 /* AirPrintBridgeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18B514EDFBBE1A7733983D2A /* Build configuration list for PBXNativeTarget "AirPrintBridgeTests" */;
+			buildPhases = (
+				567E09CD48C0329B34A8EB66 /* Sources */,
+				75B51B7696733E8CC0302E7B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E5C65B55CF340DBD3B3608DD /* PBXTargetDependency */,
+			);
+			name = AirPrintBridgeTests;
+			packageProductDependencies = (
+			);
+			productName = AirPrintBridgeTests;
+			productReference = 85BFC155F4C80301B9689FFD /* AirPrintBridgeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FFF038DBECD251EF49338DDD /* AirPrintBridgeDaemon */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FED6D9949B876A8110CB4530 /* Build configuration list for PBXNativeTarget "AirPrintBridgeDaemon" */;
+			buildPhases = (
+				CFD5951ED27B56007125F240 /* Sources */,
+				046D548AEAAB8E77E1AE316E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AirPrintBridgeDaemon;
+			packageProductDependencies = (
+			);
+			productName = AirPrintBridgeDaemon;
+			productReference = A6E038579D067B93A6239000 /* AirPrintBridgeDaemon */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0CF7475EACC2F15E3A41CF92 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					8C71E67C4AF61A68F28178BB = {
+						DevelopmentTeam = "";
+					};
+					F10D1CA56A40958870DC5875 = {
+						DevelopmentTeam = "";
+					};
+					FFF038DBECD251EF49338DDD = {
+						DevelopmentTeam = "";
+					};
+				};
+			};
+			buildConfigurationList = AB4FD27BEA26EC414A7D2553 /* Build configuration list for PBXProject "AirPrintBridge" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 954B280A28739DE10DEC6395;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 37EB48C0B4DE9AAF38355F9A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8C71E67C4AF61A68F28178BB /* AirPrintBridge */,
+				FFF038DBECD251EF49338DDD /* AirPrintBridgeDaemon */,
+				F10D1CA56A40958870DC5875 /* AirPrintBridgeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		046D548AEAAB8E77E1AE316E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB71960ED386E2347AA5EFB9 /* nl.labelsenmeer.airprint-bridge.daemon.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49FA3BD104FF8C2CEA16823B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A15DF9F52947D1EFCC4234C /* AirPrintBridgeDaemon in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		75B51B7696733E8CC0302E7B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E149F0B71329DE959DD13D5 /* sample_lpoptions_color.txt in Resources */,
+				76D38F7DF60B1B89D0143DCF /* sample_lpoptions_zebra.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6AD2AD62E986655E4C4282C0 /* Embed Daemon in LaunchDaemons */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Daemon in LaunchDaemons";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "DAEMON_SRC=\"${BUILT_PRODUCTS_DIR}/AirPrintBridgeDaemon\"\nDAEMON_DST=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/Contents/Library/LaunchDaemons\"\nmkdir -p \"${DAEMON_DST}\"\ncp \"${DAEMON_SRC}\" \"${DAEMON_DST}/\"\ncp \"${SRCROOT}/AirPrintBridgeDaemon/nl.labelsenmeer.airprint-bridge.daemon.plist\" \"${DAEMON_DST}/\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		567E09CD48C0329B34A8EB66 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F98D4AFC88F7005C2615E541 /* AirPrintBridgeTests.swift in Sources */,
+				9FAE36B5F31CE29EFF01AA89 /* URFGeneratorTests.swift in Sources */,
+				4B809877A9BB0A4613E52425 /* UnitConversionTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A201534CBDDD9195365CB0BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0146D0324D8524C2AEA1B013 /* AirPrintBridgeApp.swift in Sources */,
+				998945763F6B5918432CEDEC /* Constants.swift in Sources */,
+				A7EC9CB9CF6A08C07F630BAE /* PrinterConfig.swift in Sources */,
+				81DBAE25537DF5C6A53C8B82 /* URFGenerator.swift in Sources */,
+				A8ECCDA27B172CD166BD56BF /* UnitConversion.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CFD5951ED27B56007125F240 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D13D0ABE5ACE4B5654842387 /* Constants.swift in Sources */,
+				AB78C5FF1361DBAF93AF6484 /* PrinterConfig.swift in Sources */,
+				AA941DE70568512B47AF4A08 /* URFGenerator.swift in Sources */,
+				8FE0FDD09F2670CD80C82950 /* UnitConversion.swift in Sources */,
+				1D1C1D1EA512570FA696C240 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B1E2185098BCB1D9A699F6CB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FFF038DBECD251EF49338DDD /* AirPrintBridgeDaemon */;
+			targetProxy = 2DFCE991D7CCF40D03A2AF7A /* PBXContainerItemProxy */;
+		};
+		E5C65B55CF340DBD3B3608DD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C71E67C4AF61A68F28178BB /* AirPrintBridge */;
+			targetProxy = 33033C338BD89974FA2CFE13 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		23657AED9952D4C5B2930C60 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		3060E6FD9BA6C37885E9C6F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_APP_SANDBOX = NO;
+				INFOPLIST_FILE = AirPrintBridge/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.labelsenmeer.airprint-bridge";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		564E56B9413B2956EF947AA7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = nl.labelsenmeer.AirPrintBridgeTests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AirPrintBridge.app/Contents/MacOS/AirPrintBridge";
+			};
+			name = Release;
+		};
+		85B60D888C9A5987F3984A08 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_APP_SANDBOX = NO;
+				INFOPLIST_FILE = AirPrintBridge/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.labelsenmeer.airprint-bridge";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		AD042B1FBA10D24B000B063B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = AirPrintBridgeDaemon/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.labelsenmeer.airprint-bridge.daemon";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		EA0F754920F9319D28B54D9F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		EDE073011E6F9E5A3464F14C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = AirPrintBridgeDaemon/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.labelsenmeer.airprint-bridge.daemon";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		F3BB09A75FBDA0081BDF3E25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = nl.labelsenmeer.AirPrintBridgeTests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AirPrintBridge.app/Contents/MacOS/AirPrintBridge";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		18B514EDFBBE1A7733983D2A /* Build configuration list for PBXNativeTarget "AirPrintBridgeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3BB09A75FBDA0081BDF3E25 /* Debug */,
+				564E56B9413B2956EF947AA7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		3D54B7DD34C511F6C83ACB40 /* Build configuration list for PBXNativeTarget "AirPrintBridge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				85B60D888C9A5987F3984A08 /* Debug */,
+				3060E6FD9BA6C37885E9C6F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		AB4FD27BEA26EC414A7D2553 /* Build configuration list for PBXProject "AirPrintBridge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				23657AED9952D4C5B2930C60 /* Debug */,
+				EA0F754920F9319D28B54D9F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		FED6D9949B876A8110CB4530 /* Build configuration list for PBXNativeTarget "AirPrintBridgeDaemon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD042B1FBA10D24B000B063B /* Debug */,
+				EDE073011E6F9E5A3464F14C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0CF7475EACC2F15E3A41CF92 /* Project object */;
+}

@@ -1,0 +1,7 @@
+ColorModel/Color Mode: *RGB Gray
+cupsPrintQuality/Quality: Draft *Normal High Photo
+Orientation/Orientation: *Portrait Landscape
+Duplex/Duplex: *None DuplexNoTumble DuplexTumble
+PageSize/Media Size: w595h842
+MediaType/MediaType: *plain glossy
+InputSlot/Media Source: *auto tray-1 tray-2

@@ -1,0 +1,5 @@
+ColorModel/Color Mode: *Gray
+cupsPrintQuality/Quality: Draft *Normal High
+PageSize/Media Size: w284h114
+MediaType/MediaType: *labels
+InputSlot/Media Source: *auto

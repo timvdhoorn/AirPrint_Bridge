@@ -1,0 +1,70 @@
+name: AirPrintBridge
+options:
+  bundleIdPrefix: nl.labelsenmeer
+  deploymentTarget:
+    macOS: "13.0"
+  xcodeVersion: "16.0"
+  createIntermediateGroups: true
+  groupSortPosition: top
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MACOSX_DEPLOYMENT_TARGET: "13.0"
+    CODE_SIGN_IDENTITY: "-"
+    DEVELOPMENT_TEAM: ""
+    ENABLE_HARDENED_RUNTIME: YES
+
+targets:
+  AirPrintBridge:
+    type: application
+    platform: macOS
+    sources:
+      - path: AirPrintBridge
+      - path: Shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: nl.labelsenmeer.airprint-bridge
+        INFOPLIST_FILE: AirPrintBridge/Info.plist
+        ENABLE_APP_SANDBOX: NO
+        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/../Frameworks"
+    dependencies:
+      - target: AirPrintBridgeDaemon
+        embed: true
+        codeSign: true
+        copyPhase:
+          destination: executables
+    postBuildScripts:
+      - name: "Embed Daemon in LaunchDaemons"
+        script: |
+          DAEMON_SRC="${BUILT_PRODUCTS_DIR}/AirPrintBridgeDaemon"
+          DAEMON_DST="${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/Contents/Library/LaunchDaemons"
+          mkdir -p "${DAEMON_DST}"
+          cp "${DAEMON_SRC}" "${DAEMON_DST}/"
+          cp "${SRCROOT}/AirPrintBridgeDaemon/nl.labelsenmeer.airprint-bridge.daemon.plist" "${DAEMON_DST}/"
+
+  AirPrintBridgeDaemon:
+    type: tool
+    platform: macOS
+    sources:
+      - path: AirPrintBridgeDaemon
+      - path: Shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: nl.labelsenmeer.airprint-bridge.daemon
+        INFOPLIST_FILE: AirPrintBridgeDaemon/Info.plist
+
+  AirPrintBridgeTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - path: AirPrintBridgeTests
+      - path: TestFixtures
+        buildPhase: resources
+    dependencies:
+      - target: AirPrintBridge
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/AirPrintBridge.app/Contents/MacOS/AirPrintBridge"
+        BUNDLE_LOADER: "$(TEST_HOST)"

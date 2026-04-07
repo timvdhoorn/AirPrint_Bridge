@@ -6,7 +6,9 @@
 
 **Architecture:** Two-target Xcode project — a SwiftUI menu bar app (`AirPrintBridge.app`) that provides the UI and config, and a Swift CLI LaunchDaemon (`AirPrintBridgeDaemon`) that runs as root at boot to modify CUPS/PPD and register dns-sd services. The app writes config to a shared `UserDefaults` suite and signals the daemon via `SIGHUP`. The daemon writes status to `/tmp/airprint-bridge-status.json` for the app to read.
 
-**Tech Stack:** Swift 5.9+, SwiftUI, macOS 13+, `SMAppService`, `UserDefaults` suite, `Process` (for shell commands), XCTest
+**Tech Stack:** Swift 5.9+, SwiftUI, macOS 13+ (Ventura), `SMAppService`, `UserDefaults` suite, `Process` (for shell commands), XCTest
+
+**macOS 13 constraint:** Use `ObservableObject`/`@Published`/`@StateObject`/`@ObservedObject`/`@EnvironmentObject` (NOT `@Observable`/`@Bindable`/`@Environment(Type.self)` which require macOS 14+). Use `tabItem` in Settings (NOT `Tab` API which requires macOS 15+).
 
 **Spec:** `docs/superpowers/specs/2026-04-07-airprint-bridge-macos-app-design.md`
 **Existing script:** `airprint_bridge.sh` — all daemon logic is ported from this.
@@ -1852,22 +1854,21 @@ git commit -m "feat: add printer discovery with lpstat parsing"
 ```swift
 // AirPrintBridge/Models/BridgeConfig.swift
 import Foundation
-import SwiftUI
+import Combine
 
-@Observable
-final class BridgeConfig {
+final class BridgeConfig: ObservableObject {
     private let defaults: UserDefaults
 
-    var defaultPaperWidth: Int {
+    @Published var defaultPaperWidth: Int {
         didSet { defaults.set(defaultPaperWidth, forKey: "defaultPaperWidth") }
     }
-    var defaultPaperHeight: Int {
+    @Published var defaultPaperHeight: Int {
         didSet { defaults.set(defaultPaperHeight, forKey: "defaultPaperHeight") }
     }
-    var showMenuBarIcon: Bool {
+    @Published var showMenuBarIcon: Bool {
         didSet { defaults.set(showMenuBarIcon, forKey: "showMenuBarIcon") }
     }
-    var printers: [PrinterConfig] {
+    @Published var printers: [PrinterConfig] {
         didSet { savePrinters() }
     }
 
@@ -1952,8 +1953,7 @@ git commit -m "feat: add BridgeConfig observable model with UserDefaults sync"
 import Foundation
 import ServiceManagement
 
-@Observable
-final class DaemonManager {
+final class DaemonManager: ObservableObject {
     private let service: SMAppService
 
     var status: SMAppService.Status {
@@ -2014,7 +2014,7 @@ git commit -m "feat: add DaemonManager with SMAppService wrapper"
 import SwiftUI
 
 struct PopoverView: View {
-    @Environment(BridgeConfig.self) private var config
+    @EnvironmentObject private var config: BridgeConfig
     @State private var daemonStatus: DaemonStatus?
     @State private var discoveredPrinters: [DiscoveredPrinter] = []
 
@@ -2166,13 +2166,11 @@ git commit -m "feat: implement menu bar popover view"
 import SwiftUI
 
 struct SettingsGeneralView: View {
-    @Environment(BridgeConfig.self) private var config
-    @State private var daemonManager = DaemonManager()
+    @EnvironmentObject private var config: BridgeConfig
+    @StateObject private var daemonManager = DaemonManager()
     @State private var errorMessage: String?
 
     var body: some View {
-        @Bindable var config = config
-
         Form {
             Section {
                 Toggle(isOn: Binding(
@@ -2187,7 +2185,7 @@ struct SettingsGeneralView: View {
                     }
                 }
 
-                Toggle(isOn: $config.showMenuBarIcon) {
+                Toggle(isOn: $config.showMenuBarIcon) {  // works via @Published
                     VStack(alignment: .leading) {
                         Text("Toon icoontje in menubalk")
                         Text("Als uitgeschakeld, open Instellingen via Spotlight of de app opnieuw")
@@ -2242,7 +2240,7 @@ struct SettingsGeneralView: View {
 import SwiftUI
 
 struct SettingsPrintersView: View {
-    @Environment(BridgeConfig.self) private var config
+    @EnvironmentObject private var config: BridgeConfig
     @State private var discoveredPrinters: [DiscoveredPrinter] = []
 
     var body: some View {
@@ -2365,19 +2363,16 @@ import SwiftUI
 
 @main
 struct AirPrintBridgeApp: App {
-    @State private var config = BridgeConfig()
+    @StateObject private var config = BridgeConfig()
 
     var body: some Scene {
         MenuBarExtra(
             "AirPrint Bridge",
             systemImage: "printer.fill",
-            isInserted: Binding(
-                get: { config.showMenuBarIcon },
-                set: { config.showMenuBarIcon = $0 }
-            )
+            isInserted: $config.showMenuBarIcon
         ) {
             PopoverView()
-                .environment(config)
+                .environmentObject(config)
         }
         .menuBarExtraStyle(.window)
 
@@ -2392,7 +2387,7 @@ struct AirPrintBridgeApp: App {
                         Label("Printers", systemImage: "printer")
                     }
             }
-            .environment(config)
+            .environmentObject(config)
         }
     }
 }

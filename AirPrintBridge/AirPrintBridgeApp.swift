@@ -21,6 +21,10 @@ struct AirPrintBridgeApp: App {
                     .tabItem {
                         Label("Printers", systemImage: "printer")
                     }
+                SettingsAboutView()
+                    .tabItem {
+                        Label("Over", systemImage: "info.circle")
+                    }
             }
             .environmentObject(config)
         }

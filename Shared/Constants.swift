@@ -9,4 +9,5 @@ enum AirPrintBridge {
     static let ppdBasePath = "/etc/cups/ppd"
     static let service = "_ipp._tcp.,_universal"
     static let domain = "local"
+    static let reloadNotification = "nl.labelsenmeer.airprint-bridge.reload"
 }

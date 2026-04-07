@@ -70,9 +70,9 @@ final class BridgeConfig: ObservableObject {
 
     func notifyDaemon() {
         savePrinters()
-        guard let pidString = try? String(contentsOfFile: AirPrintBridge.pidFilePath),
-              let pid = Int32(pidString.trimmingCharacters(in: .whitespacesAndNewlines))
-        else { return }
-        kill(pid, SIGHUP)
+        DistributedNotificationCenter.default().postNotificationName(
+            NSNotification.Name(AirPrintBridge.reloadNotification),
+            object: nil
+        )
     }
 }

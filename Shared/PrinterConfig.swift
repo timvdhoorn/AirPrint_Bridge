@@ -2,8 +2,8 @@ import Foundation
 
 struct PrinterConfig: Codable, Identifiable, Equatable {
     let name: String
-    let widthMm: Int
-    let heightMm: Int
+    var widthMm: Int
+    var heightMm: Int
     var enabled: Bool
 
     var id: String { name }

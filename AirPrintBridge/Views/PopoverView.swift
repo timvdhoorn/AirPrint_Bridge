@@ -19,7 +19,7 @@ struct PopoverView: View {
         }
         .padding()
         .frame(width: 320)
-        .onAppear { refresh() }
+        .task { await refreshAsync() }
     }
 
     // MARK: - Header
@@ -114,9 +114,16 @@ struct PopoverView: View {
 
     // MARK: - Actions
 
-    private func refresh() {
-        discoveredPrinters = PrinterDiscovery.discover()
-        config.syncWithDiscovered(discoveredPrinters)
+    private func refreshAsync() async {
+        let printers = await Task.detached {
+            PrinterDiscovery.discover()
+        }.value
+        discoveredPrinters = printers
+        config.syncWithDiscovered(printers)
         daemonStatus = StatusReader.read()
+    }
+
+    private func refresh() {
+        Task { await refreshAsync() }
     }
 }

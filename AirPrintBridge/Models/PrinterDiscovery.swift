@@ -56,15 +56,17 @@ enum PrinterDiscovery {
 
         let pipe = Pipe()
         process.standardOutput = pipe
+        process.standardError = FileHandle.nullDevice
 
         do {
-            try process.launch()
-            process.waitUntilExit()
+            try process.run()
         } catch {
             return []
         }
 
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
+        process.waitUntilExit()
+
         let output = String(data: data, encoding: .utf8) ?? ""
         return parse(lpstatOutput: output)
     }

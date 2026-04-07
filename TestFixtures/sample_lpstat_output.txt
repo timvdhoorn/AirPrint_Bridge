@@ -1,0 +1,24 @@
+printer Zebra_DHL is idle.  enabled since Mon 07 Apr 2026 10:00:00 AM CEST
+	Description: Zebra DHL
+	Location: Magazijn
+	Connection: direct
+	Interface: /etc/cups/ppd/Zebra_DHL.ppd
+	Make and Model: Zebra ZPL Label Printer
+	Accepting Jobs: yes
+	Shared: yes
+printer Brother_Kantoor is idle.  enabled since Mon 07 Apr 2026 10:00:00 AM CEST
+	Description: Brother Kantoor
+	Location: Kantoor
+	Connection: direct
+	Interface: /etc/cups/ppd/Brother_Kantoor.ppd
+	Make and Model: Brother HL-L2350DW
+	Accepting Jobs: yes
+	Shared: yes
+printer HP_Private is idle.  enabled since Mon 07 Apr 2026 10:00:00 AM CEST
+	Description: HP Private
+	Location:
+	Connection: direct
+	Interface: /etc/cups/ppd/HP_Private.ppd
+	Make and Model: HP LaserJet
+	Accepting Jobs: yes
+	Shared: no

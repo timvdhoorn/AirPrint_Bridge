@@ -1,0 +1,120 @@
+<h2>AirPrint Bridge — Instellingen (Cmd+,)</h2>
+<p class="subtitle">Settings scene met tabs</p>
+
+<div class="mockup">
+  <div class="mockup-header">Settings venster</div>
+  <div class="mockup-body" style="width:480px; font-family: -apple-system, system-ui; font-size:13px; padding:0;">
+
+    <!-- Tab bar -->
+    <div style="display:flex; background:#f0f0f0; border-bottom:1px solid #d5d5d5; padding:8px 16px 0;">
+      <div style="padding:6px 16px; background:white; border:1px solid #d5d5d5; border-bottom:1px solid white; border-radius:6px 6px 0 0; font-weight:500; font-size:12px; margin-bottom:-1px;">
+        Algemeen
+      </div>
+      <div style="padding:6px 16px; font-size:12px; color:#666; margin-bottom:-1px;">
+        Printers
+      </div>
+    </div>
+
+    <!-- Algemeen tab -->
+    <div style="padding:20px 24px;">
+      <div style="margin-bottom:20px;">
+        <div style="font-weight:600; margin-bottom:12px;">Opstarten</div>
+        <label style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+          <input type="checkbox" checked style="width:16px; height:16px;">
+          <span>Start AirPrint Bridge bij opstarten van de Mac</span>
+        </label>
+        <div style="font-size:11px; color:#888; margin-left:24px;">Draait als achtergrondservice, ook zonder dat iemand is ingelogd</div>
+      </div>
+
+      <div style="border-top:1px solid #e5e5e5; padding-top:16px; margin-bottom:20px;">
+        <div style="font-weight:600; margin-bottom:12px;">Menu bar</div>
+        <label style="display:flex; align-items:center; gap:8px;">
+          <input type="checkbox" checked style="width:16px; height:16px;">
+          <span>Toon icoontje in de menubalk</span>
+        </label>
+        <div style="font-size:11px; color:#888; margin-left:24px;">Als uitgeschakeld, open Instellingen via Spotlight of de app opnieuw</div>
+      </div>
+
+      <div style="border-top:1px solid #e5e5e5; padding-top:16px;">
+        <div style="font-weight:600; margin-bottom:12px;">Standaard papierformaat</div>
+        <div style="display:flex; gap:12px; align-items:center;">
+          <div style="display:flex; align-items:center; gap:6px;">
+            <label style="font-size:12px;">Breedte</label>
+            <div style="border:1px solid #ccc; border-radius:4px; padding:4px 8px; width:60px; font-size:12px;">100</div>
+            <span style="font-size:11px; color:#888;">mm</span>
+          </div>
+          <span style="color:#ccc;">x</span>
+          <div style="display:flex; align-items:center; gap:6px;">
+            <label style="font-size:12px;">Hoogte</label>
+            <div style="border:1px solid #ccc; border-radius:4px; padding:4px 8px; width:60px; font-size:12px;">40</div>
+            <span style="font-size:11px; color:#888;">mm</span>
+          </div>
+        </div>
+        <div style="font-size:11px; color:#888; margin-top:6px;">Dit formaat wordt gebruikt voor nieuwe printers. Bestaande printers behouden hun instelling.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="height:24px;"></div>
+
+<div class="mockup">
+  <div class="mockup-header">Printers tab — per-printer papierformaat</div>
+  <div class="mockup-body" style="width:480px; font-family: -apple-system, system-ui; font-size:13px; padding:0;">
+
+    <!-- Tab bar -->
+    <div style="display:flex; background:#f0f0f0; border-bottom:1px solid #d5d5d5; padding:8px 16px 0;">
+      <div style="padding:6px 16px; font-size:12px; color:#666; margin-bottom:-1px;">
+        Algemeen
+      </div>
+      <div style="padding:6px 16px; background:white; border:1px solid #d5d5d5; border-bottom:1px solid white; border-radius:6px 6px 0 0; font-weight:500; font-size:12px; margin-bottom:-1px;">
+        Printers
+      </div>
+    </div>
+
+    <!-- Printers tab -->
+    <div style="padding:20px 24px;">
+      <!-- Printer 1 -->
+      <div style="background:#f5f5f7; border-radius:8px; padding:14px; margin-bottom:10px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <div>
+            <div style="font-weight:600;">Zebra_DHL</div>
+            <div style="font-size:11px; color:#888;">Zebra ZPL Label Printer</div>
+          </div>
+          <div style="width:40px; height:22px; background:#34c759; border-radius:11px; position:relative;">
+            <div style="width:18px; height:18px; background:white; border-radius:50%; position:absolute; right:2px; top:2px;"></div>
+          </div>
+        </div>
+        <div style="display:flex; gap:8px; align-items:center; margin-top:8px;">
+          <label style="font-size:12px; color:#666; min-width:80px;">Papierformaat</label>
+          <div style="border:1px solid #ccc; border-radius:4px; padding:3px 6px; width:50px; font-size:12px; text-align:center;">100</div>
+          <span style="font-size:11px; color:#888;">x</span>
+          <div style="border:1px solid #ccc; border-radius:4px; padding:3px 6px; width:50px; font-size:12px; text-align:center;">40</div>
+          <span style="font-size:11px; color:#888;">mm</span>
+        </div>
+      </div>
+
+      <!-- Printer 2 -->
+      <div style="background:#f5f5f7; border-radius:8px; padding:14px; margin-bottom:10px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <div>
+            <div style="font-weight:600;">Brother_Kantoor</div>
+            <div style="font-size:11px; color:#888;">Brother HL-L2350DW</div>
+          </div>
+          <div style="width:40px; height:22px; background:#34c759; border-radius:11px; position:relative;">
+            <div style="width:18px; height:18px; background:white; border-radius:50%; position:absolute; right:2px; top:2px;"></div>
+          </div>
+        </div>
+        <div style="display:flex; gap:8px; align-items:center; margin-top:8px;">
+          <label style="font-size:12px; color:#666; min-width:80px;">Papierformaat</label>
+          <div style="border:1px solid #ccc; border-radius:4px; padding:3px 6px; width:50px; font-size:12px; text-align:center;">210</div>
+          <span style="font-size:11px; color:#888;">x</span>
+          <div style="border:1px solid #ccc; border-radius:4px; padding:3px 6px; width:50px; font-size:12px; text-align:center;">297</div>
+          <span style="font-size:11px; color:#888;">mm</span>
+        </div>
+      </div>
+
+      <div style="font-size:11px; color:#888; margin-top:8px;">Wijzigingen worden direct toegepast. CUPS en dns-sd worden automatisch herstart.</div>
+    </div>
+  </div>
+</div>

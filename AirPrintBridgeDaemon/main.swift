@@ -31,10 +31,14 @@ func resolveAndRegister(printer: PrinterConfig) -> DaemonStatus.PrinterStatus {
     let descResult = ShellCommand.run("lpstat -l -p \(name)")
     let descLines = descResult.stdout.components(separatedBy: "\n")
 
-    let description = descLines
+    let rawDescription = descLines
         .first { $0.contains("Description:") }
         .flatMap { $0.components(separatedBy: "Description:").last?.trimmingCharacters(in: .whitespaces) }
-        ?? name
+
+    let hostname = ProcessInfo.processInfo.hostName
+        .components(separatedBy: ".").first ?? "Mac"
+
+    let description = (rawDescription?.isEmpty == false) ? rawDescription! : "\(name) @ \(hostname)"
 
     let location = descLines
         .first { $0.contains("Location:") }
@@ -45,17 +49,24 @@ func resolveAndRegister(printer: PrinterConfig) -> DaemonStatus.PrinterStatus {
     let optsResult = ShellCommand.run("lpoptions -p \(name)")
     let makeModel: String = {
         let opts = optsResult.stdout
+        // Try quoted format first: printer-make-and-model='...'
         if let range = opts.range(of: "printer-make-and-model='") {
             let start = range.upperBound
             if let end = opts[start...].firstIndex(of: "'") {
                 return String(opts[start..<end])
             }
         }
+        // Try unquoted format: printer-make-and-model=VALUE SPACE
+        if let range = opts.range(of: "printer-make-and-model=") {
+            let start = range.upperBound
+            let rest = opts[start...]
+            if let end = rest.firstIndex(of: " ") {
+                return String(rest[..<end])
+            }
+            return String(rest)
+        }
         return name
     }()
-
-    let hostname = ProcessInfo.processInfo.hostName
-        .components(separatedBy: ".").first ?? "Mac"
 
     // Strip PPD to configured paper size
     let ppdOk = CUPSManager.stripPPD(

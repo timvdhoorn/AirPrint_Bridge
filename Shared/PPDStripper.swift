@@ -11,39 +11,63 @@ enum PPDStripper {
         var pageRegionInserted = false
 
         for line in lines {
-            let trimmed = line.trimmingCharacters(in: .whitespaces)
+            // Fix 4: match on original line (not trimmed), using hasPrefix to mirror bash awk `^` anchoring
 
-            // Track PageSize UI block
-            if trimmed.hasPrefix("*OpenUI *PageSize") {
+            // Track PageSize UI block — OpenUI
+            if line.hasPrefix("*OpenUI *PageSize") {
                 inPageSizeUI = true
                 pageSizeInserted = false
                 result.append(line)
                 continue
             }
-            if trimmed.hasPrefix("*CloseUI: *PageSize") {
+
+            // Track PageSize UI block — CloseUI
+            // Fix 1: insert fallback entry before CloseUI if nothing was printed inside the block
+            if line.hasPrefix("*CloseUI: *PageSize") {
+                if inPageSizeUI && !pageSizeInserted {
+                    result.append(pageSizeLine(key: key, sizeLabel: sizeLabel, width: widthPoints, height: heightPoints))
+                    pageSizeInserted = true
+                }
                 inPageSizeUI = false
                 result.append(line)
                 continue
             }
 
-            // Track PageRegion UI block
-            if trimmed.hasPrefix("*OpenUI *PageRegion") {
+            // Track PageRegion UI block — OpenUI
+            if line.hasPrefix("*OpenUI *PageRegion") {
                 inPageRegionUI = true
                 pageRegionInserted = false
                 result.append(line)
                 continue
             }
-            if trimmed.hasPrefix("*CloseUI: *PageRegion") {
+
+            // Track PageRegion UI block — CloseUI
+            // Fix 1: insert fallback entry before CloseUI if nothing was printed inside the block
+            if line.hasPrefix("*CloseUI: *PageRegion") {
+                if inPageRegionUI && !pageRegionInserted {
+                    result.append(pageRegionLine(key: key, sizeLabel: sizeLabel, width: widthPoints, height: heightPoints))
+                    pageRegionInserted = true
+                }
                 inPageRegionUI = false
                 result.append(line)
                 continue
             }
 
-            // Inside PageSize block
+            // Fix 3: DefaultPageSize — handle at any position (inside or outside block)
+            if line.hasPrefix("*DefaultPageSize:") {
+                result.append("*DefaultPageSize: \(key)")
+                continue
+            }
+
+            // Fix 3: DefaultPageRegion — handle at any position (inside or outside block)
+            if line.hasPrefix("*DefaultPageRegion:") {
+                result.append("*DefaultPageRegion: \(key)")
+                continue
+            }
+
+            // Inside PageSize block — replace PageSize entries
             if inPageSizeUI {
-                if trimmed.hasPrefix("*DefaultPageSize:") {
-                    result.append("*DefaultPageSize: \(key)")
-                } else if trimmed.hasPrefix("*PageSize ") {
+                if line.hasPrefix("*PageSize ") {
                     if !pageSizeInserted {
                         result.append(pageSizeLine(key: key, sizeLabel: sizeLabel, width: widthPoints, height: heightPoints))
                         pageSizeInserted = true
@@ -53,11 +77,9 @@ enum PPDStripper {
                 continue
             }
 
-            // Inside PageRegion block
+            // Inside PageRegion block — replace PageRegion entries
             if inPageRegionUI {
-                if trimmed.hasPrefix("*DefaultPageRegion:") {
-                    result.append("*DefaultPageRegion: \(key)")
-                } else if trimmed.hasPrefix("*PageRegion ") {
+                if line.hasPrefix("*PageRegion ") {
                     if !pageRegionInserted {
                         result.append(pageRegionLine(key: key, sizeLabel: sizeLabel, width: widthPoints, height: heightPoints))
                         pageRegionInserted = true
@@ -68,14 +90,13 @@ enum PPDStripper {
             }
 
             // DefaultImageableArea
-            if trimmed.hasPrefix("*DefaultImageableArea:") {
+            if line.hasPrefix("*DefaultImageableArea:") {
                 result.append("*DefaultImageableArea: \(key)")
                 continue
             }
 
-            // ImageableArea entries (not Default)
-            if trimmed.hasPrefix("*ImageableArea ") {
-                // Replace all with single entry (insert once, skip rest)
+            // ImageableArea entries (not Default) — insert once, skip rest
+            if line.hasPrefix("*ImageableArea ") {
                 if !result.contains(where: { $0.hasPrefix("*ImageableArea \(key)") }) {
                     result.append(imageableAreaLine(key: key, sizeLabel: sizeLabel, width: widthPoints, height: heightPoints))
                 }
@@ -83,28 +104,27 @@ enum PPDStripper {
             }
 
             // DefaultPaperDimension
-            if trimmed.hasPrefix("*DefaultPaperDimension:") {
+            if line.hasPrefix("*DefaultPaperDimension:") {
                 result.append("*DefaultPaperDimension: \(key)")
                 continue
             }
 
-            // PaperDimension entries (not Default)
-            if trimmed.hasPrefix("*PaperDimension ") {
+            // PaperDimension entries (not Default) — insert once, skip rest
+            if line.hasPrefix("*PaperDimension ") {
                 if !result.contains(where: { $0.hasPrefix("*PaperDimension \(key)") }) {
                     result.append(paperDimensionLine(key: key, sizeLabel: sizeLabel, width: widthPoints, height: heightPoints))
                 }
                 continue
             }
 
-            // CustomPageSize True -> False
-            if trimmed.hasPrefix("*CustomPageSize True:") {
-                let newLine = line.replacingOccurrences(of: "*CustomPageSize True:", with: "*CustomPageSize False:")
-                result.append(newLine)
+            // Fix 2: CustomPageSize True -> output exact fixed string (not a string replacement)
+            if line.hasPrefix("*CustomPageSize True:") {
+                result.append("*CustomPageSize False: \"pop pop pop <</PageSize[5 -2 roll]/ImagingBBox null>>setpagedevice\"")
                 continue
             }
 
             // Remove ParamCustomPageSize lines
-            if trimmed.hasPrefix("*ParamCustomPageSize ") {
+            if line.hasPrefix("*ParamCustomPageSize ") {
                 continue
             }
 

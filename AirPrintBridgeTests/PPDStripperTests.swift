@@ -47,7 +47,11 @@ final class PPDStripperTests: XCTestCase {
 
     func testDisablesCustomPageSize() {
         let output = stripped()
-        XCTAssertTrue(output.contains("*CustomPageSize False:"), "CustomPageSize should be set to False")
+        // Fix 2: exact replacement string from bash awk must be used (not just True→False substitution)
+        XCTAssertTrue(
+            output.contains("*CustomPageSize False: \"pop pop pop <</PageSize[5 -2 roll]/ImagingBBox null>>setpagedevice\""),
+            "CustomPageSize should be replaced with exact bash awk output string"
+        )
         XCTAssertFalse(output.contains("*CustomPageSize True:"), "CustomPageSize True should be removed")
         XCTAssertFalse(output.contains("*ParamCustomPageSize"), "ParamCustomPageSize lines should be removed")
     }

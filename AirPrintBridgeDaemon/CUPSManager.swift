@@ -27,10 +27,7 @@ enum CUPSManager {
             }
 
             // Insert `Allow @LOCAL` after `Order allow,deny` inside <Location />
-            let sedCmd = """
-            sed -i '' '/^<Location \\/>/{:a;n;/Order allow,deny/a\\    Allow @LOCAL
-            ;ba}' \(configPath)
-            """
+            let sedCmd = "sed -i '' '/<Location \\/>/,/<\\/Location>/ s/Order allow,deny/Order allow,deny\\n  Allow @LOCAL/' \(configPath)"
             ShellCommand.run(sedCmd)
 
             let validation = ShellCommand.run("cupsd -t")
@@ -41,6 +38,7 @@ enum CUPSManager {
             } else {
                 log("cupsd.conf invalid after patch — reverting. stderr: \(validation.stderr)")
                 revertConfig()
+                return false
             }
         } else {
             log("Allow @LOCAL already present in cupsd.conf")

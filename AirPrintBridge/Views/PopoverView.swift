@@ -85,6 +85,10 @@ struct PopoverView: View {
                 }
                 Button("Vernieuw") { refresh() }
                 Spacer()
+                Button("Stop") {
+                    NSApplication.shared.terminate(nil)
+                }
+                .foregroundColor(.red)
             }
         }
         .padding()

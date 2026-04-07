@@ -8,22 +8,49 @@
 
 /* Begin PBXBuildFile section */
 		0146D0324D8524C2AEA1B013 /* AirPrintBridgeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E722248B4C7E9F9242E757 /* AirPrintBridgeApp.swift */; };
+		09D4B4BFC24A802FDAEB9730 /* PPDStripperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EDD380282A51F0E51DF25 /* PPDStripperTests.swift */; };
+		1A95BEC23DFBC1924FDE7525 /* PPDStripper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16C28C09C80198A6A61695D /* PPDStripper.swift */; };
 		1D1C1D1EA512570FA696C240 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBC2E60987797C9A14A749B /* main.swift */; };
 		2A15DF9F52947D1EFCC4234C /* AirPrintBridgeDaemon in Resources */ = {isa = PBXBuildFile; fileRef = A6E038579D067B93A6239000 /* AirPrintBridgeDaemon */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2A927824E50D5DC4A8C9BD11 /* SettingsGeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF59EFA34D4D8E76008C223 /* SettingsGeneralView.swift */; };
+		3A14E117D55A3EF3C2958C5C /* ConfigReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1AA619947E309F111A89A4 /* ConfigReaderTests.swift */; };
+		3A67424B3483D301C8E5BFEC /* CUPSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D967FBBD393A80D43AD36A8 /* CUPSManager.swift */; };
 		3E149F0B71329DE959DD13D5 /* sample_lpoptions_color.txt in Resources */ = {isa = PBXBuildFile; fileRef = A502BE7AEEA43BCC24A1DE1F /* sample_lpoptions_color.txt */; };
+		3F1D27921EB4349EDFE9B4EE /* BridgeConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBC11091DA0E88B81AD1C15 /* BridgeConfig.swift */; };
+		4AA54AB8A810418476C062C5 /* TXTRecordBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667C2EBB32A1D0842139DE80 /* TXTRecordBuilderTests.swift */; };
 		4B809877A9BB0A4613E52425 /* UnitConversionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8A9C3A81C829501AB57B8D /* UnitConversionTests.swift */; };
+		4C8B5BD497FA36AAFFCD31B0 /* DaemonStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA234DA697332D1D4B661B37 /* DaemonStatus.swift */; };
+		4C934E4FE61414A58B03E4C3 /* FirewallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9402789CCBEB7D39D2F1B768 /* FirewallManager.swift */; };
+		4CE123C59792AB96A338D813 /* PrinterDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9AE09A4C1324CCFDC0DCEA /* PrinterDiscovery.swift */; };
+		565E9B8EFB628057FF394309 /* StatusReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F282CC7279BFD58322845F8 /* StatusReaderTests.swift */; };
+		60801C709451EAD38D88077F /* DaemonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B3BD2914F3EBEC3A86D4EE /* DaemonManager.swift */; };
+		69EFC0EB621A58EB7F26A719 /* PPDStripper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16C28C09C80198A6A61695D /* PPDStripper.swift */; };
+		6DE9FA4F79AB68FC308A769E /* StatusWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBB81F1EBC5DA6B5B11F07A /* StatusWriter.swift */; };
 		76D38F7DF60B1B89D0143DCF /* sample_lpoptions_zebra.txt in Resources */ = {isa = PBXBuildFile; fileRef = 144327CF29AF2B6B140BB810 /* sample_lpoptions_zebra.txt */; };
+		803B931852915E2CEC9D8895 /* PrinterDiscoveryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C82E6BC1E42E3163FD82D88 /* PrinterDiscoveryTests.swift */; };
 		81DBAE25537DF5C6A53C8B82 /* URFGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C289E8DE65E90ACEA56EBCC0 /* URFGenerator.swift */; };
+		82C140710A3D3293477802C1 /* ConfigReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08729A8D4FC7DB3BB0808B4F /* ConfigReader.swift */; };
+		89A11A59093946EF38A3B383 /* sample_ppd_zebra.ppd in Resources */ = {isa = PBXBuildFile; fileRef = FBBBC8F586EEECC188953434 /* sample_ppd_zebra.ppd */; };
 		8FE0FDD09F2670CD80C82950 /* UnitConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6072551B0B0D8912B1626439 /* UnitConversion.swift */; };
+		900FD9E745F388602C247BE8 /* StatusReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6904D36133A86C619A26B575 /* StatusReader.swift */; };
 		998945763F6B5918432CEDEC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5FA94CAEBC8A141B25C052 /* Constants.swift */; };
 		9FAE36B5F31CE29EFF01AA89 /* URFGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135718DF6DF5F6A2D56170D /* URFGeneratorTests.swift */; };
+		A2F0040FCFE904F26CCDA482 /* sample_lpstat_output.txt in Resources */ = {isa = PBXBuildFile; fileRef = BC9391AEFE35741CDA1FEE28 /* sample_lpstat_output.txt */; };
+		A4830F50E1DC4B4B7ED7E6C5 /* SettingsPrintersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4AA138DCACC56AFE9879B1 /* SettingsPrintersView.swift */; };
 		A7EC9CB9CF6A08C07F630BAE /* PrinterConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC1226B18B3E021569649C8 /* PrinterConfig.swift */; };
 		A8ECCDA27B172CD166BD56BF /* UnitConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6072551B0B0D8912B1626439 /* UnitConversion.swift */; };
 		AA941DE70568512B47AF4A08 /* URFGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C289E8DE65E90ACEA56EBCC0 /* URFGenerator.swift */; };
 		AB78C5FF1361DBAF93AF6484 /* PrinterConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC1226B18B3E021569649C8 /* PrinterConfig.swift */; };
+		AE53E9AC8899CF2FA9D8F8CE /* TXTRecordBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7A242028F15D7EAC187287 /* TXTRecordBuilder.swift */; };
+		BF297A62F79966ECA21C8CF1 /* TXTRecordBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7A242028F15D7EAC187287 /* TXTRecordBuilder.swift */; };
+		C53A97D93406D9778D70FF0D /* StatusWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBB81F1EBC5DA6B5B11F07A /* StatusWriter.swift */; };
+		C62EF88B54ADD39721B2F199 /* ShellCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF127D5AADAEDBB67BCE20F /* ShellCommand.swift */; };
+		D11EE203B07587C9D0B7D2AF /* ConfigReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08729A8D4FC7DB3BB0808B4F /* ConfigReader.swift */; };
 		D13D0ABE5ACE4B5654842387 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5FA94CAEBC8A141B25C052 /* Constants.swift */; };
+		DA8602B2B025A41BFF393DF3 /* DaemonStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA234DA697332D1D4B661B37 /* DaemonStatus.swift */; };
+		DCF2C582627DD888550BB490 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED407E90EDBC9BEA7F41CB46 /* PopoverView.swift */; };
 		EB71960ED386E2347AA5EFB9 /* nl.labelsenmeer.airprint-bridge.daemon.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4AEC8A23BE7093B2D510EB13 /* nl.labelsenmeer.airprint-bridge.daemon.plist */; };
-		F98D4AFC88F7005C2615E541 /* AirPrintBridgeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10130BD9170B4AF20852A45B /* AirPrintBridgeTests.swift */; };
+		FEF1C09B29FB86C65A540B53 /* DNSSDRegistrar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7CD261EEEEE7BC8C5837EE /* DNSSDRegistrar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,33 +72,69 @@
 
 /* Begin PBXFileReference section */
 		046AAF13AF5206A479C86904 /* AirPrintBridge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirPrintBridge.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		10130BD9170B4AF20852A45B /* AirPrintBridgeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirPrintBridgeTests.swift; sourceTree = "<group>"; };
+		08729A8D4FC7DB3BB0808B4F /* ConfigReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigReader.swift; sourceTree = "<group>"; };
+		0D967FBBD393A80D43AD36A8 /* CUPSManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CUPSManager.swift; sourceTree = "<group>"; };
 		144327CF29AF2B6B140BB810 /* sample_lpoptions_zebra.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = sample_lpoptions_zebra.txt; sourceTree = "<group>"; };
+		1A7CD261EEEEE7BC8C5837EE /* DNSSDRegistrar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSSDRegistrar.swift; sourceTree = "<group>"; };
 		1B8F922F314DC7996DE7DB48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		1C82E6BC1E42E3163FD82D88 /* PrinterDiscoveryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterDiscoveryTests.swift; sourceTree = "<group>"; };
 		1DBC2E60987797C9A14A749B /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		26E722248B4C7E9F9242E757 /* AirPrintBridgeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirPrintBridgeApp.swift; sourceTree = "<group>"; };
 		2BE0903461FF51C734F4E508 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2F5FA94CAEBC8A141B25C052 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		397EDD380282A51F0E51DF25 /* PPDStripperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPDStripperTests.swift; sourceTree = "<group>"; };
+		3DF127D5AADAEDBB67BCE20F /* ShellCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellCommand.swift; sourceTree = "<group>"; };
+		3F282CC7279BFD58322845F8 /* StatusReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusReaderTests.swift; sourceTree = "<group>"; };
 		4AEC8A23BE7093B2D510EB13 /* nl.labelsenmeer.airprint-bridge.daemon.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "nl.labelsenmeer.airprint-bridge.daemon.plist"; sourceTree = "<group>"; };
+		4B7A242028F15D7EAC187287 /* TXTRecordBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TXTRecordBuilder.swift; sourceTree = "<group>"; };
 		6072551B0B0D8912B1626439 /* UnitConversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitConversion.swift; sourceTree = "<group>"; };
+		667C2EBB32A1D0842139DE80 /* TXTRecordBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TXTRecordBuilderTests.swift; sourceTree = "<group>"; };
+		6904D36133A86C619A26B575 /* StatusReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusReader.swift; sourceTree = "<group>"; };
 		6F8A9C3A81C829501AB57B8D /* UnitConversionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitConversionTests.swift; sourceTree = "<group>"; };
 		85BFC155F4C80301B9689FFD /* AirPrintBridgeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirPrintBridgeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		90B3BD2914F3EBEC3A86D4EE /* DaemonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaemonManager.swift; sourceTree = "<group>"; };
+		9402789CCBEB7D39D2F1B768 /* FirewallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirewallManager.swift; sourceTree = "<group>"; };
 		A135718DF6DF5F6A2D56170D /* URFGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URFGeneratorTests.swift; sourceTree = "<group>"; };
 		A502BE7AEEA43BCC24A1DE1F /* sample_lpoptions_color.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = sample_lpoptions_color.txt; sourceTree = "<group>"; };
 		A6E038579D067B93A6239000 /* AirPrintBridgeDaemon */ = {isa = PBXFileReference; includeInIndex = 0; path = AirPrintBridgeDaemon; sourceTree = BUILT_PRODUCTS_DIR; };
+		BAF59EFA34D4D8E76008C223 /* SettingsGeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsGeneralView.swift; sourceTree = "<group>"; };
+		BC9391AEFE35741CDA1FEE28 /* sample_lpstat_output.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = sample_lpstat_output.txt; sourceTree = "<group>"; };
 		C289E8DE65E90ACEA56EBCC0 /* URFGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URFGenerator.swift; sourceTree = "<group>"; };
+		CA234DA697332D1D4B661B37 /* DaemonStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaemonStatus.swift; sourceTree = "<group>"; };
+		CBBC11091DA0E88B81AD1C15 /* BridgeConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeConfig.swift; sourceTree = "<group>"; };
+		CF9AE09A4C1324CCFDC0DCEA /* PrinterDiscovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterDiscovery.swift; sourceTree = "<group>"; };
+		D16C28C09C80198A6A61695D /* PPDStripper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPDStripper.swift; sourceTree = "<group>"; };
 		DBC1226B18B3E021569649C8 /* PrinterConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterConfig.swift; sourceTree = "<group>"; };
+		EB1AA619947E309F111A89A4 /* ConfigReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigReaderTests.swift; sourceTree = "<group>"; };
+		EB4AA138DCACC56AFE9879B1 /* SettingsPrintersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPrintersView.swift; sourceTree = "<group>"; };
+		ED407E90EDBC9BEA7F41CB46 /* PopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverView.swift; sourceTree = "<group>"; };
+		EDBB81F1EBC5DA6B5B11F07A /* StatusWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusWriter.swift; sourceTree = "<group>"; };
+		FBBBC8F586EEECC188953434 /* sample_ppd_zebra.ppd */ = {isa = PBXFileReference; path = sample_ppd_zebra.ppd; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
 		081E397E9675A75C5FF33C5C /* AirPrintBridgeTests */ = {
 			isa = PBXGroup;
 			children = (
-				10130BD9170B4AF20852A45B /* AirPrintBridgeTests.swift */,
+				EB1AA619947E309F111A89A4 /* ConfigReaderTests.swift */,
+				397EDD380282A51F0E51DF25 /* PPDStripperTests.swift */,
+				1C82E6BC1E42E3163FD82D88 /* PrinterDiscoveryTests.swift */,
+				3F282CC7279BFD58322845F8 /* StatusReaderTests.swift */,
+				667C2EBB32A1D0842139DE80 /* TXTRecordBuilderTests.swift */,
 				6F8A9C3A81C829501AB57B8D /* UnitConversionTests.swift */,
 				A135718DF6DF5F6A2D56170D /* URFGeneratorTests.swift */,
 			);
 			path = AirPrintBridgeTests;
+			sourceTree = "<group>";
+		};
+		32A296517623CDB3FF5F8253 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				ED407E90EDBC9BEA7F41CB46 /* PopoverView.swift */,
+				BAF59EFA34D4D8E76008C223 /* SettingsGeneralView.swift */,
+				EB4AA138DCACC56AFE9879B1 /* SettingsPrintersView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		37EB48C0B4DE9AAF38355F9A /* Products */ = {
@@ -87,6 +150,9 @@
 		507BDBC93C390620233D2558 /* AirPrintBridge */ = {
 			isa = PBXGroup;
 			children = (
+				AC0DC44B6E3DECADF97CE971 /* Models */,
+				B53EA4E43402B57BCD853ADC /* Services */,
+				32A296517623CDB3FF5F8253 /* Views */,
 				26E722248B4C7E9F9242E757 /* AirPrintBridgeApp.swift */,
 				1B8F922F314DC7996DE7DB48 /* Info.plist */,
 			);
@@ -96,9 +162,13 @@
 		8CF30CA963FB56318C2C3BD3 /* AirPrintBridgeDaemon */ = {
 			isa = PBXGroup;
 			children = (
+				0D967FBBD393A80D43AD36A8 /* CUPSManager.swift */,
+				1A7CD261EEEEE7BC8C5837EE /* DNSSDRegistrar.swift */,
+				9402789CCBEB7D39D2F1B768 /* FirewallManager.swift */,
 				2BE0903461FF51C734F4E508 /* Info.plist */,
 				1DBC2E60987797C9A14A749B /* main.swift */,
 				4AEC8A23BE7093B2D510EB13 /* nl.labelsenmeer.airprint-bridge.daemon.plist */,
+				3DF127D5AADAEDBB67BCE20F /* ShellCommand.swift */,
 			);
 			path = AirPrintBridgeDaemon;
 			sourceTree = "<group>";
@@ -115,11 +185,34 @@
 			);
 			sourceTree = "<group>";
 		};
+		AC0DC44B6E3DECADF97CE971 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CBBC11091DA0E88B81AD1C15 /* BridgeConfig.swift */,
+				CF9AE09A4C1324CCFDC0DCEA /* PrinterDiscovery.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B53EA4E43402B57BCD853ADC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				90B3BD2914F3EBEC3A86D4EE /* DaemonManager.swift */,
+				6904D36133A86C619A26B575 /* StatusReader.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		DBF0A2C56568466A59399363 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				08729A8D4FC7DB3BB0808B4F /* ConfigReader.swift */,
 				2F5FA94CAEBC8A141B25C052 /* Constants.swift */,
+				CA234DA697332D1D4B661B37 /* DaemonStatus.swift */,
+				D16C28C09C80198A6A61695D /* PPDStripper.swift */,
 				DBC1226B18B3E021569649C8 /* PrinterConfig.swift */,
+				EDBB81F1EBC5DA6B5B11F07A /* StatusWriter.swift */,
+				4B7A242028F15D7EAC187287 /* TXTRecordBuilder.swift */,
 				6072551B0B0D8912B1626439 /* UnitConversion.swift */,
 				C289E8DE65E90ACEA56EBCC0 /* URFGenerator.swift */,
 			);
@@ -131,6 +224,8 @@
 			children = (
 				A502BE7AEEA43BCC24A1DE1F /* sample_lpoptions_color.txt */,
 				144327CF29AF2B6B140BB810 /* sample_lpoptions_zebra.txt */,
+				BC9391AEFE35741CDA1FEE28 /* sample_lpstat_output.txt */,
+				FBBBC8F586EEECC188953434 /* sample_ppd_zebra.ppd */,
 			);
 			path = TestFixtures;
 			sourceTree = "<group>";
@@ -259,6 +354,8 @@
 			files = (
 				3E149F0B71329DE959DD13D5 /* sample_lpoptions_color.txt in Resources */,
 				76D38F7DF60B1B89D0143DCF /* sample_lpoptions_zebra.txt in Resources */,
+				A2F0040FCFE904F26CCDA482 /* sample_lpstat_output.txt in Resources */,
+				89A11A59093946EF38A3B383 /* sample_ppd_zebra.ppd in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,7 +387,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F98D4AFC88F7005C2615E541 /* AirPrintBridgeTests.swift in Sources */,
+				3A14E117D55A3EF3C2958C5C /* ConfigReaderTests.swift in Sources */,
+				09D4B4BFC24A802FDAEB9730 /* PPDStripperTests.swift in Sources */,
+				803B931852915E2CEC9D8895 /* PrinterDiscoveryTests.swift in Sources */,
+				565E9B8EFB628057FF394309 /* StatusReaderTests.swift in Sources */,
+				4AA54AB8A810418476C062C5 /* TXTRecordBuilderTests.swift in Sources */,
 				9FAE36B5F31CE29EFF01AA89 /* URFGeneratorTests.swift in Sources */,
 				4B809877A9BB0A4613E52425 /* UnitConversionTests.swift in Sources */,
 			);
@@ -301,8 +402,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				0146D0324D8524C2AEA1B013 /* AirPrintBridgeApp.swift in Sources */,
+				3F1D27921EB4349EDFE9B4EE /* BridgeConfig.swift in Sources */,
+				82C140710A3D3293477802C1 /* ConfigReader.swift in Sources */,
 				998945763F6B5918432CEDEC /* Constants.swift in Sources */,
+				60801C709451EAD38D88077F /* DaemonManager.swift in Sources */,
+				DA8602B2B025A41BFF393DF3 /* DaemonStatus.swift in Sources */,
+				69EFC0EB621A58EB7F26A719 /* PPDStripper.swift in Sources */,
+				DCF2C582627DD888550BB490 /* PopoverView.swift in Sources */,
 				A7EC9CB9CF6A08C07F630BAE /* PrinterConfig.swift in Sources */,
+				4CE123C59792AB96A338D813 /* PrinterDiscovery.swift in Sources */,
+				2A927824E50D5DC4A8C9BD11 /* SettingsGeneralView.swift in Sources */,
+				A4830F50E1DC4B4B7ED7E6C5 /* SettingsPrintersView.swift in Sources */,
+				900FD9E745F388602C247BE8 /* StatusReader.swift in Sources */,
+				6DE9FA4F79AB68FC308A769E /* StatusWriter.swift in Sources */,
+				BF297A62F79966ECA21C8CF1 /* TXTRecordBuilder.swift in Sources */,
 				81DBAE25537DF5C6A53C8B82 /* URFGenerator.swift in Sources */,
 				A8ECCDA27B172CD166BD56BF /* UnitConversion.swift in Sources */,
 			);
@@ -312,8 +425,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A67424B3483D301C8E5BFEC /* CUPSManager.swift in Sources */,
+				D11EE203B07587C9D0B7D2AF /* ConfigReader.swift in Sources */,
 				D13D0ABE5ACE4B5654842387 /* Constants.swift in Sources */,
+				FEF1C09B29FB86C65A540B53 /* DNSSDRegistrar.swift in Sources */,
+				4C8B5BD497FA36AAFFCD31B0 /* DaemonStatus.swift in Sources */,
+				4C934E4FE61414A58B03E4C3 /* FirewallManager.swift in Sources */,
+				1A95BEC23DFBC1924FDE7525 /* PPDStripper.swift in Sources */,
 				AB78C5FF1361DBAF93AF6484 /* PrinterConfig.swift in Sources */,
+				C62EF88B54ADD39721B2F199 /* ShellCommand.swift in Sources */,
+				C53A97D93406D9778D70FF0D /* StatusWriter.swift in Sources */,
+				AE53E9AC8899CF2FA9D8F8CE /* TXTRecordBuilder.swift in Sources */,
 				AA941DE70568512B47AF4A08 /* URFGenerator.swift in Sources */,
 				8FE0FDD09F2670CD80C82950 /* UnitConversion.swift in Sources */,
 				1D1C1D1EA512570FA696C240 /* main.swift in Sources */,

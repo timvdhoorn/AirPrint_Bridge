@@ -202,13 +202,22 @@ strip_ppd_to_custom_size() {
     /^\*DefaultImageableArea:/ { printf "*DefaultImageableArea: %s\n", key; next }
     /^\*DefaultPaperDimension:/ { printf "*DefaultPaperDimension: %s\n", key; next }
 
-    # Disable CustomPageSize (prevents iOS from generating arbitrary sizes)
-    /^\*CustomPageSize True:/ { print "*CustomPageSize False: \"pop pop pop <</PageSize[5 -2 roll]/ImagingBBox null>>setpagedevice\""; next }
+    # Remove CustomPageSize entirely (prevents iOS from generating arbitrary sizes)
+    /^\*CustomPageSize/ { next }
     # Remove ParamCustomPageSize lines
     /^\*ParamCustomPageSize / { next }
+    # Remove MaxMedia lines so we can inject our own
+    /^\*MaxMediaWidth/ { next }
+    /^\*MaxMediaHeight/ { next }
 
     # Print all other lines unchanged
     { print }
+
+    # Append max media constraints to prevent iOS from offering larger sizes
+    END {
+      printf "*MaxMediaWidth: \"%s\"\n", w
+      printf "*MaxMediaHeight: \"%s\"\n", h
+    }
   ' "${ppd}" | sudo tee "${ppd}.tmp" > /dev/null
 
   sudo mv "${ppd}.tmp" "$ppd"
@@ -436,7 +445,7 @@ generate_urf() {
             
             # Media Size Options - hardcoded to 100x150mm custom label format
             *"PageSize/Media Size:"*)
-                add_urf_code "MS_CUSTOM_100x150mm"
+                add_urf_code "MS_CUSTOM_${CUSTOM_LABEL}mm"
                 ;;
             
             # Media Type Options

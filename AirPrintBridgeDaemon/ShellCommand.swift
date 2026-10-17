@@ -32,11 +32,30 @@ enum ShellCommand {
         return Result(exitCode: process.terminationStatus, stdout: stdout, stderr: stderr)
     }
 
-    /// Run a long-lived background process (dns-sd). Returns the Process handle.
+    /// Run a long-lived background process (dns-sd) via bash -c. Returns the Process handle.
     static func runBackground(_ command: String) -> Process? {
         let process = Process()
         process.executableURL = URL(fileURLWithPath: "/bin/bash")
         process.arguments = ["-c", command]
+        process.standardOutput = FileHandle.nullDevice
+        process.standardError = FileHandle.nullDevice
+
+        do {
+            try process.run()
+            return process
+        } catch {
+            return nil
+        }
+    }
+
+    /// Run a long-lived background process with direct arguments (no shell interpolation).
+    static func runBackgroundDirect(_ arguments: [String]) -> Process? {
+        guard let executable = arguments.first else { return nil }
+        let process = Process()
+        process.executableURL = URL(fileURLWithPath: "/usr/bin/\(executable)")
+        process.arguments = Array(arguments.dropFirst())
+        process.standardOutput = FileHandle.nullDevice
+        process.standardError = FileHandle.nullDevice
 
         do {
             try process.run()

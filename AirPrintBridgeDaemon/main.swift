@@ -113,8 +113,8 @@ func resolveAndRegister(printer: PrinterConfig) -> DaemonStatus.PrinterStatus {
         port = 631
     }
 
-    // Register dns-sd
-    let displayName = description
+    // Register dns-sd — match shell script format: "Description @ hostname"
+    let displayName = "\(description) @ \(hostname)"
     let registered = registrar.register(
         printerName: name,
         description: displayName,

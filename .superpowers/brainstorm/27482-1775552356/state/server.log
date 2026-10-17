@@ -1,0 +1,5 @@
+{"type":"server-started","port":54634,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:54634","screen_dir":"/Users/timvdhoorn/Devops/Logidirect/Airprint-Bridge-Custom/.superpowers/brainstorm/27482-1775552356/content","state_dir":"/Users/timvdhoorn/Devops/Logidirect/Airprint-Bridge-Custom/.superpowers/brainstorm/27482-1775552356/state"}
+{"type":"screen-added","file":"/Users/timvdhoorn/Devops/Logidirect/Airprint-Bridge-Custom/.superpowers/brainstorm/27482-1775552356/content/menubar-ui.html"}
+{"type":"screen-added","file":"/Users/timvdhoorn/Devops/Logidirect/Airprint-Bridge-Custom/.superpowers/brainstorm/27482-1775552356/content/settings-ui.html"}
+{"type":"screen-added","file":"/Users/timvdhoorn/Devops/Logidirect/Airprint-Bridge-Custom/.superpowers/brainstorm/27482-1775552356/content/waiting.html"}
+{"type":"server-stopped","reason":"owner process exited"}

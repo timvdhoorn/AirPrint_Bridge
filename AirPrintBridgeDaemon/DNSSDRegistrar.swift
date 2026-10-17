@@ -7,10 +7,14 @@ final class DNSSDRegistrar {
     func register(printerName: String, description: String, port: Int, txtRecords: [String]) -> Bool {
         unregister(printerName: printerName)
 
-        let txtArgs = txtRecords.map { "\"\($0)\"" }.joined(separator: " ")
-        let command = "dns-sd -R \"\(description)\" \"\(AirPrintBridge.service)\" \"\(AirPrintBridge.domain)\" \(port) \(txtArgs)"
+        var args = [
+            "dns-sd", "-R", description,
+            AirPrintBridge.service, AirPrintBridge.domain,
+            "\(port)"
+        ]
+        args.append(contentsOf: txtRecords)
 
-        guard let process = ShellCommand.runBackground(command) else {
+        guard let process = ShellCommand.runBackgroundDirect(args) else {
             print("[DNSSDRegistrar] Failed to start dns-sd for \(printerName)")
             return false
         }
